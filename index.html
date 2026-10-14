@@ -334,6 +334,7 @@ let lang='bn';try{lang=localStorage.getItem('gs_lang')||'bn'}catch(e){}
 const LOC=()=>lang==='en'?'en-GB':'bn-BD';
 const bn=n=>lang==='en'?String(n):String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]);
 const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl=u=>{if(!u)return '';const s=String(u).trim();return (s.startsWith('data:image/')||s.startsWith('https://')||s.startsWith('http://')||s.startsWith('./')||s.startsWith('/'))?esc(s):''};
 const today=()=>bn(new Date().toLocaleDateString('en-GB'));
 const S={pubs:[],winners:[],members:[],subs:[],certs:[],reads:[],resets:[],sig:{},authors:[],isEditor:false,roles:{},site:{},events:[],gallery:[],media:[],comments:[],likes:[],rsvps:[],pend:[],msgs:[],me:null,user:null,isAdmin:false};
 let filter='সব',unsubs=[];
@@ -372,8 +373,12 @@ if(READY){
         live(query(collection(db,'comments'),where('ok','==',false)),s=>{S.pend=rows(s);render()});
         live(collection(db,'msgs'),s=>{S.msgs=rows(s);render()});
       }else{live(query(collection(db,'certs'),where('uid','==',u.uid)),s=>{S.certs=rows(s);render()});live(query(collection(db,'rsvps'),where('uid','==',u.uid)),s=>{S.rsvps=rows(s);render()});
-      if(u.emailVerified)getDoc(doc(db,'settings','roles')).then(()=>{if(S.user&&S.user.uid===u.uid){S.isEditor=true;
-        live(collection(db,'subs'),s=>{S.subs=rows(s);render()});live(query(collection(db,'comments'),where('ok','==',false)),s=>{S.pend=rows(s);render()});render()}}).catch(()=>{})}
+      if(u.emailVerified)getDoc(doc(db,'settings','roles')).then(d=>{if(S.user&&S.user.uid===u.uid){
+        const r=d.exists()?d.data():{};const ed=Array.isArray(r.editors)?r.editors:(typeof r.editors==='string'?r.editors.split('\n'):[]);
+        const edList=ed.map(x=>String(x).trim().toLowerCase()).filter(Boolean);
+        if(edList.includes((u.email||'').toLowerCase())){
+          S.isEditor=true;live(collection(db,'subs'),s=>{S.subs=rows(s);render()});live(query(collection(db,'comments'),where('ok','==',false)),s=>{S.pend=rows(s);render()});render()}
+      }}).catch(()=>{})}
     }
     render();
   });
@@ -383,8 +388,8 @@ function certHTML(c){const g=S.sig||{},n=esc(c.n);let body;
   if(c.t==='welcome')body=n+' গিরি সম্প্রীতির একজন সম্মানিত সদস্য হওয়ায় তাঁকে আন্তরিক শুভেচ্ছা ও অভিনন্দন জানানো হলো। বাংলা সাহিত্য ও সংস্কৃতির পথচলায় তিনি আমাদের সঙ্গী হয়ে থাকুন, এই কামনা করি।';
   else if(c.t==='yearly')body=n+', '+esc(c.p)+' সালে '+(c.s==='সব'?'':'&quot;'+esc(c.s)+'&quot; বিভাগে ')+'সাহিত্যচর্চায় অসামান্য অবদানের জন্য বছরের সেরা লেখক নির্বাচিত হয়েছেন।';
   else body=n+' ('+esc(c.p)+') সময়কালে &quot;'+esc(c.s)+'&quot; বিভাগে সর্বাধিক পাঠের জন্য '+(c.t==='weekly'?'সাপ্তাহিক':'মাসিক')+' সেরা পাঠক নির্বাচিত হয়েছেন। তাঁর সাহিত্যপ্রীতি আমাদের অনুপ্রাণিত করে।';
-  const sg=(im,nm,rl)=>'<div class="sig"><div class="im">'+(im?'<img alt="" src="'+esc(im)+'">':esc(nm))+'</div><div class="ln"><b>'+esc(nm)+'</b><br>'+rl+'</div></div>';
-  return '<div class="cert"><img class="cl" alt="" src="'+document.querySelector('.logo-big').src+'"><h3>গিরি সম্প্রীতি</h3><div style="font-size:.85rem">সাহিত্য, সাংস্কৃতিক ও সামাজিক সংগঠন · প্রতিষ্ঠাকাল ২০২১</div><h4>'+CT[c.t]+'</h4><p>এই মর্মে প্রত্যয়ন করা যাচ্ছে যে</p>'+(c.img?'<img class="ph" alt="" src="'+esc(c.img)+'">':'<div class="ph" style="display:inline-block"></div>')+'<p><b style="font-size:1.3rem">'+n+'</b></p><p>'+body+'</p><p style="font-size:.85rem">সনদ নং: '+esc(c.no)+' · তারিখ: '+esc(c.d)+'</p>'+qrHTML(c)+'<div class="sigs">'+sg(g.pres,'রশিদ আহমদ','সভাপতি, গিরি সম্প্রীতি')+sg(g.sec,g.sn||'আলকামাহ শাকিলুর রশিদ','সাধারণ সম্পাদক, গিরি সম্প্রীতি')+'</div></div>'}
+  const sg=(im,nm,rl)=>'<div class="sig"><div class="im">'+(im?'<img alt="" src="'+safeUrl(im)+'">':esc(nm))+'</div><div class="ln"><b>'+esc(nm)+'</b><br>'+rl+'</div></div>';
+  return '<div class="cert"><img class="cl" alt="" src="'+document.querySelector('.logo-big').src+'"><h3>গিরি সম্প্রীতি</h3><div style="font-size:.85rem">সাহিত্য, সাংস্কৃতিক ও সামাজিক সংগঠন · প্রতিষ্ঠাকাল ২০২১</div><h4>'+CT[c.t]+'</h4><p>এই মর্মে প্রত্যয়ন করা যাচ্ছে যে</p>'+(c.img?'<img class="ph" alt="" src="'+safeUrl(c.img)+'">':'<div class="ph" style="display:inline-block"></div>')+'<p><b style="font-size:1.3rem">'+n+'</b></p><p>'+body+'</p><p style="font-size:.85rem">সনদ নং: '+esc(c.no)+' · তারিখ: '+esc(c.d)+'</p>'+qrHTML(c)+'<div class="sigs">'+sg(g.pres,'রশিদ আহমদ','সভাপতি, গিরি সম্প্রীতি')+sg(g.sec,g.sn||'আলকামাহ শাকিলুর রশিদ','সাধারণ সম্পাদক, গিরি সম্প্রীতি')+'</div></div>'}
 const showCert=c=>{cur={type:'cert',c};$('cbox').innerHTML=certHTML(c);$('cd').showModal()};
 const mk=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
 
@@ -454,7 +459,17 @@ $('f1').onsubmit=async e=>{e.preventDefault();if(!need())return;
 $('gbtn').onclick=async()=>{if(!need())return;
   try{const r=await signInWithPopup(auth,new GoogleAuthProvider());
     const isA=r.user.emailVerified&&ADMIN_EMAILS.includes((r.user.email||'').toLowerCase());
-    if(!isA){let ok=false;if(r.user.emailVerified){try{await getDoc(doc(db,'settings','roles'));ok=true}catch(e){}}
+    if(!isA){
+      let ok=false;
+      if(r.user.emailVerified){
+        try{
+          const d=await getDoc(doc(db,'settings','roles'));
+          const data=d.exists()?d.data():{};
+          const ed=Array.isArray(data.editors)?data.editors:(typeof data.editors==='string'?data.editors.split('\n'):[]);
+          const edList=ed.map(x=>String(x).trim().toLowerCase()).filter(Boolean);
+          if(edList.includes((r.user.email||'').toLowerCase())) ok=true;
+        }catch(e){}
+      }
       if(!ok){await signOut(auth);say('এই অ্যাকাউন্টে অ্যাডমিন বা সম্পাদকের অনুমতি নেই।',1);return}}
     $('dlg').close();location.hash='#admin'}
   catch(er){say('লগইন সম্পূর্ণ হয়নি।',1)}};

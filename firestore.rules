@@ -1,0 +1,445 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: pubs (Published articles, poems, stories)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - t: string (type/genre, required, 1-50 chars)
+    //   - h: string (title, required, 1-200 chars)
+    //   - a: string (author name, required, 1-100 chars)
+    //   - b: string (body text, required, 1-500000 chars)
+    //   - d: string (publication date string, required, 1-50 chars)
+    //   - ts: number (timestamp, required)
+    //   - en: map (optional English translation: {h, a, b})
+    //   - img: string (optional cover image URL or data URI)
+    //
+    // Collection: authors (Author bios)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - n: string (author name, required, 1-100 chars)
+    //   - bio: string (author bio, optional, max 5000 chars)
+    //   - en: map (optional English bio)
+    //   - img: string (optional author photo)
+    //   - ts: number
+    //
+    // Collection: events (Upcoming events)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - h: string (event title, required, 1-200 chars)
+    //   - ts: number (event timestamp, required)
+    //   - place: string (venue, optional, max 200 chars)
+    //   - desc: string (description, optional, max 5000 chars)
+    //   - en: map (optional English translation)
+    //
+    // Collection: gallery (Photo gallery)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - img: string (image data or URL, required)
+    //   - cap: string (caption, optional, max 500 chars)
+    //   - en: map (optional English caption)
+    //   - ts: number
+    //
+    // Collection: media (Video/audio clips)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - h: string (title, required, 1-200 chars)
+    //   - vid: string (video id/url, required, 1-200 chars)
+    //   - en: map (optional English translation)
+    //   - ts: number
+    //
+    // Collection: winners (Award recipients)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - n: string (winner name, required, 1-100 chars)
+    //   - img: string (optional photo)
+    //   - t: string (award type: weekly/monthly/yearly, required)
+    //   - s: string (section, required)
+    //   - p: string (period, required)
+    //   - ts: number
+    //
+    // Collection: members (Member profiles & PII)
+    // Document ID: user UID
+    // Fields:
+    //   - n: string (full name, required, 1-100 chars)
+    //   - e: string (email, required, must match authenticated email)
+    //   - p: string (phone number, required, 5-25 chars)
+    //   - mid: string (member id, required, 1-50 chars)
+    //   - d: string (join date, required, 1-50 chars)
+    //   - img: string (optional photo, max 1000000 chars)
+    //   - ts: number
+    //
+    // Collection: subs (Submissions awaiting review)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - uid: string (author UID, required, immutable)
+    //   - t: string (submission type, required, 1-50 chars)
+    //   - h: string (title, required, 1-200 chars)
+    //   - a: string (author name, required, 1-100 chars)
+    //   - c: string (contact info, required, 1-100 chars)
+    //   - b: string (body text, required, 1-500000 chars)
+    //   - d: string (date, required, 1-50 chars)
+    //   - ts: number
+    //
+    // Collection: certs (Issued certificates)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - uid: string (member UID, required)
+    //   - no: string (certificate number, required, 1-60 chars)
+    //   - n: string (recipient name, required, 1-100 chars)
+    //   - t: string (cert type, required, 1-50 chars)
+    //   - s: string (section, optional, max 50 chars)
+    //   - p: string (period, optional, max 50 chars)
+    //   - d: string (date, required, 1-50 chars)
+    //   - img: string (optional photo)
+    //   - ts: number
+    //
+    // Collection: verify (Public certificate lookup)
+    // Document ID: certificate number
+    // Fields:
+    //   - uid: string (member UID, required)
+    //   - no: string (certificate number, required)
+    //   - n: string (recipient name, required)
+    //   - t: string (cert type, required)
+    //   - s: string (section, optional)
+    //   - p: string (period, optional)
+    //   - d: string (date, required)
+    //   - ts: number
+    //
+    // Collection: comments (Public comments on publications)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - pub: string (publication ID, required)
+    //   - uid: string (commenter UID, required, immutable)
+    //   - n: string (commenter display name, required, 1-100 chars)
+    //   - b: string (comment body, required, 1-2000 chars)
+    //   - ok: bool (approval status, default false on creation)
+    //   - ts: number
+    //
+    // Collection: likes (User likes on publications)
+    // Document ID: ${pubId}_${userId}
+    // Fields:
+    //   - pub: string (publication ID, required)
+    //   - uid: string (user UID, required, immutable)
+    //
+    // Collection: reads (Reading count tracking)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - uid: string (user UID, required, immutable)
+    //   - t: string (publication type, optional)
+    //   - h: string (publication heading, optional)
+    //   - ts: number
+    //
+    // Collection: resets (Password reset requests via phone)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - p: string (phone number digits, required, 5-25 chars)
+    //   - ts: number
+    //
+    // Collection: msgs (Public contact messages)
+    // Document ID: auto-generated string
+    // Fields:
+    //   - n: string (sender name, required, 1-100 chars)
+    //   - c: string (contact info, optional, max 100 chars)
+    //   - b: string (message body, required, 1-3000 chars)
+    //   - ts: number
+    //
+    // Collection: rsvps (Event RSVP attendances)
+    // Document ID: ${eventId}_${userId}
+    // Fields:
+    //   - ev: string (event ID, required)
+    //   - uid: string (user UID, required, immutable)
+    //   - n: string (name, required, 1-100 chars)
+    //   - ts: number
+    //
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isVerified() {
+      return isAuthenticated() && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isDocOwner() {
+      return isAuthenticated() && request.auth.uid == resource.data.uid;
+    }
+
+    function isAdmin() {
+      return isVerified() && (
+        request.auth.token.email.lower() in ['alkamahrashid@gmail.com', 'sakilurrashid1@gmail.com'] ||
+        (
+          exists(/databases/$(database)/documents/settings/roles) &&
+          request.auth.token.email.lower() in get(/databases/$(database)/documents/settings/roles).data.get('admins', [])
+        )
+      );
+    }
+
+    function isEditor() {
+      return isAdmin() || (
+        isVerified() &&
+        exists(/databases/$(database)/documents/settings/roles) &&
+        request.auth.token.email.lower() in get(/databases/$(database)/documents/settings/roles).data.get('editors', [])
+      );
+    }
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    function validStringLength(field, minLen, maxLen) {
+      return request.resource.data[field] is string &&
+        request.resource.data[field].size() >= minLen &&
+        request.resource.data[field].size() <= maxLen;
+    }
+
+    function isValidOptionalString(field, minLen, maxLen) {
+      return !(field in request.resource.data) ||
+        (request.resource.data[field] is string &&
+         request.resource.data[field].size() >= minLen &&
+         request.resource.data[field].size() <= maxLen);
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    function isValidPub(data) {
+      return hasRequiredFields(['t', 'h', 'a', 'b', 'd']) &&
+        validStringLength('t', 1, 50) &&
+        validStringLength('h', 1, 200) &&
+        validStringLength('a', 1, 100) &&
+        validStringLength('b', 1, 500000) &&
+        validStringLength('d', 1, 50) &&
+        isValidOptionalString('img', 0, 1000000);
+    }
+
+    function isValidMember(data, userId) {
+      return isOwner(userId) &&
+        hasRequiredFields(['n', 'e', 'p', 'mid', 'd']) &&
+        data.e == request.auth.token.email &&
+        validStringLength('n', 1, 100) &&
+        validStringLength('p', 5, 25) &&
+        validStringLength('mid', 1, 50) &&
+        validStringLength('d', 1, 50) &&
+        isValidOptionalString('img', 0, 1000000);
+    }
+
+    function isValidSubmission(data) {
+      return isAuthenticated() &&
+        data.uid == request.auth.uid &&
+        hasRequiredFields(['uid', 't', 'h', 'a', 'c', 'b', 'd']) &&
+        validStringLength('t', 1, 50) &&
+        validStringLength('h', 1, 200) &&
+        validStringLength('a', 1, 100) &&
+        validStringLength('c', 1, 100) &&
+        validStringLength('b', 1, 500000) &&
+        validStringLength('d', 1, 50);
+    }
+
+    function isValidComment(data) {
+      return isAuthenticated() &&
+        data.uid == request.auth.uid &&
+        hasRequiredFields(['pub', 'uid', 'n', 'b', 'ok']) &&
+        data.ok == false &&
+        validStringLength('pub', 1, 100) &&
+        validStringLength('n', 1, 100) &&
+        validStringLength('b', 1, 2000);
+    }
+
+    function isValidLike(data) {
+      return isAuthenticated() &&
+        data.uid == request.auth.uid &&
+        hasRequiredFields(['pub', 'uid']) &&
+        validStringLength('pub', 1, 100);
+    }
+
+    function isValidRead(data) {
+      return isAuthenticated() &&
+        data.uid == request.auth.uid &&
+        hasRequiredFields(['uid']);
+    }
+
+    function isValidResetRequest(data) {
+      return hasRequiredFields(['p']) &&
+        validStringLength('p', 5, 25);
+    }
+
+    function isValidMessage(data) {
+      return hasRequiredFields(['n', 'b']) &&
+        validStringLength('n', 1, 100) &&
+        validStringLength('b', 1, 3000) &&
+        isValidOptionalString('c', 0, 100);
+    }
+
+    function isValidRSVP(data) {
+      return isAuthenticated() &&
+        data.uid == request.auth.uid &&
+        hasRequiredFields(['ev', 'uid', 'n']) &&
+        validStringLength('ev', 1, 100) &&
+        validStringLength('n', 1, 100);
+    }
+
+    // ===============================================================
+    // Rules Definition
+    // ===============================================================
+
+    // Settings (Roles & Permissions)
+    match /settings/{docId} {
+      allow read: if isEditor();
+      allow write: if isAdmin();
+    }
+
+    // Site Config
+    match /site/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Signatures for Certificates
+    match /sig/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Publications (articles, poems)
+    match /pubs/{pubId} {
+      allow read: if true;
+      allow create: if isEditor() && isValidPub(request.resource.data);
+      allow update: if isEditor() && isValidPub(request.resource.data);
+      allow delete: if isEditor();
+    }
+
+    // Authors
+    match /authors/{authorId} {
+      allow read: if true;
+      allow write: if isEditor();
+    }
+
+    // Events
+    match /events/{eventId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Gallery
+    match /gallery/{itemId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Media
+    match /media/{mediaId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Winners
+    match /winners/{winnerId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Members (Personal Identifiable Information: phone, email)
+    match /members/{userId} {
+      // Strictly protect PII: only owner or admin can read
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isValidMember(request.resource.data, userId);
+      allow update: if (isOwner(userId) && isValidMember(request.resource.data, userId)) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Submissions
+    match /subs/{subId} {
+      allow read: if isEditor() || (isAuthenticated() && resource.data.uid == request.auth.uid);
+      allow create: if isValidSubmission(request.resource.data);
+      allow update, delete: if isEditor();
+    }
+
+    // Certificates
+    match /certs/{certId} {
+      allow read: if (isAuthenticated() && resource.data.uid == request.auth.uid) || isAdmin();
+      // Allow welcome certificate creation upon registration, or admin creation
+      allow create: if isAdmin() || (
+        isAuthenticated() &&
+        request.resource.data.uid == request.auth.uid &&
+        request.resource.data.t == 'welcome' &&
+        request.resource.data.s == 'সদস্য'
+      );
+      allow update, delete: if isAdmin();
+    }
+
+    // Public Certificate Verification
+    match /verify/{certNo} {
+      allow read: if true;
+      // Allow welcome certificate verification registration, or admin management
+      allow create: if isAdmin() || (
+        isAuthenticated() &&
+        request.resource.data.uid == request.auth.uid &&
+        request.resource.data.t == 'welcome'
+      );
+      allow update, delete: if isAdmin();
+    }
+
+    // Comments
+    match /comments/{commentId} {
+      allow read: if (resource.data.ok == true) || isEditor();
+      allow create: if isValidComment(request.resource.data);
+      allow update: if isEditor();
+      allow delete: if isEditor() || (isAuthenticated() && resource.data.uid == request.auth.uid);
+    }
+
+    // Likes
+    match /likes/{likeId} {
+      allow read: if true;
+      allow create: if isValidLike(request.resource.data) && (likeId == request.resource.data.pub + '_' + request.auth.uid);
+      allow delete: if isAuthenticated() && resource.data.uid == request.auth.uid;
+    }
+
+    // Reads Tracking
+    match /reads/{readId} {
+      allow read: if (isAuthenticated() && resource.data.uid == request.auth.uid) || isAdmin();
+      allow create: if isValidRead(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    // Password Reset Requests (via phone)
+    match /resets/{resetId} {
+      allow read: if isAdmin();
+      allow create: if isValidResetRequest(request.resource.data);
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    // Messages / Contact Form
+    match /msgs/{msgId} {
+      allow read: if isAdmin();
+      allow create: if isValidMessage(request.resource.data);
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    // Event RSVPs
+    match /rsvps/{rsvpId} {
+      allow read: if (isAuthenticated() && resource.data.uid == request.auth.uid) || isAdmin();
+      allow create: if isValidRSVP(request.resource.data) && (rsvpId == request.resource.data.ev + '_' + request.auth.uid);
+      allow delete: if (isAuthenticated() && resource.data.uid == request.auth.uid) || isAdmin();
+    }
+
+    // Default deny all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
