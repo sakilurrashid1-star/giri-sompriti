@@ -132,8 +132,98 @@ footer{margin-top:50px;background:var(--green);color:var(--on-green);text-align:
 footer .hint{font-size:.8rem;opacity:.85;margin:6px 0 0}
 #splash img{width:150px;border-radius:50%;box-shadow:0 0 0 4px var(--gold),0 0 60px rgba(217,164,65,.6);animation:pop 1.1s ease both}
 @keyframes pop{from{transform:scale(.5) rotate(-25deg);opacity:0}to{transform:none;opacity:1}}
-@media print{@page{size:landscape;margin:8mm}body>*:not(#cd){display:none!important}#cd{position:static;display:block;width:100%!important;max-width:none;padding:0;border:0;max-height:none;overflow:visible;background:#fff}.cbox{overflow:visible}.cert{min-width:0!important;width:100%;page-break-inside:avoid}.noprint{display:none!important}}
+@media print{@page{size:landscape;margin:8mm}body>*:not(#cd){display:none!important}#cd{position:static;display:block;width:100%!important;max-width:none;padding:0;border:0;max-height:none;overflow:visible;background:#fff}.cbox{overflow:visible}.cert{min-width:0!important;width:100%;page-break-inside:avoid}.noprint,#aiWidget{display:none!important}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* ==================== COMMAND CENTER (ADMIN) ==================== */
+.adm-cc{padding:24px 0 60px}
+.adm-header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.adm-header-left h2{font-size:1.85rem;margin:4px 0 2px;color:var(--green2)}
+.adm-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(217,164,65,.12);border:1px solid rgba(217,164,65,.3);padding:3px 12px;border-radius:999px;margin-bottom:6px}
+.adm-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.adm-lead{margin:2px 0 0;color:var(--muted);font-size:.92rem}
+.adm-session-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 16px;box-shadow:0 6px 20px rgba(0,0,0,.06);min-width:190px}
+.adm-session-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.adm-badge{font-size:.76rem;font-weight:700;background:var(--green2);color:#fff;padding:2px 10px;border-radius:999px}
+.adm-status-live{font-size:.76rem;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:#2ecc71;box-shadow:0 0 8px #2ecc71;display:inline-block;animation:pulseLive 2s infinite}
+@keyframes pulseLive{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
+.adm-session-actions{display:flex;gap:6px}
+.adm-toolbar{margin-bottom:22px;overflow-x:auto;padding-bottom:6px}
+.adm-tabs{display:inline-flex;gap:6px;background:var(--surface);padding:5px;border:1px solid var(--line);border-radius:999px}
+.adm-tab-btn{font-family:inherit;font-size:.88rem;font-weight:600;padding:7px 18px;border-radius:999px;border:0;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all .2s ease;display:inline-flex;align-items:center;gap:6px}
+.adm-tab-btn:hover{color:var(--ink);background:rgba(0,0,0,.04)}
+.adm-tab-btn.on{background:var(--green2);color:#fff;box-shadow:0 4px 12px rgba(22,102,60,.25)}
+.adm-pill-cnt{font-size:.72rem;background:var(--gold);color:#241a05;padding:1px 7px;border-radius:999px;font-weight:700}
+.adm-pane{display:none;animation:admFadeIn .25s ease}
+.adm-pane.on{display:block}
+@keyframes admFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.adm-pane-head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.adm-pane-head h3{margin:0;font-size:1.25rem;color:var(--green2)}
+.adm-pane-head p{margin:2px 0 0}
+.adm-pane-actions{display:flex;gap:8px;flex-wrap:wrap}
+.adm-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:820px){.adm-grid-2{grid-template-columns:1fr}}
+.adm-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:600px){.adm-form-row{grid-template-columns:1fr}}
+.adm-foldable{margin:6px 0;border:1px dashed var(--line);border-radius:10px;background:var(--bg)}
+.adm-foldable summary{padding:8px 12px;cursor:pointer;font-size:.86rem;color:var(--muted);font-weight:600}
+.adm-fold-body{padding:10px 12px 14px;display:grid;gap:8px}
+.adm-search-box input{padding:7px 14px;font-size:.88rem;border-radius:999px;min-width:240px}
+
+/* ==================== AI ASSISTANT WIDGET (গিরি সহচর) ==================== */
+.ai-widget{position:fixed;bottom:22px;right:22px;z-index:950;font-family:inherit}
+.ai-launcher{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:999px;border:2px solid var(--gold);background:linear-gradient(135deg,var(--green) 0%,var(--green2) 100%);color:#fff;font-family:inherit;font-size:.95rem;font-weight:700;box-shadow:0 10px 28px rgba(15,74,44,.35),0 0 15px rgba(217,164,65,.3);cursor:pointer;transition:transform .25s,box-shadow .25s}
+.ai-launcher:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 34px rgba(15,74,44,.45),0 0 25px rgba(217,164,65,.5)}
+.ai-launcher-icon{font-size:1.15rem;color:var(--gold);line-height:1}
+.ai-pulse-dot{width:8px;height:8px;border-radius:50%;background:#2ecc71;box-shadow:0 0 8px #2ecc71;display:inline-block;animation:pulseLive 1.8s infinite}
+.ai-modal{position:fixed;bottom:84px;right:22px;width:min(420px,calc(100vw - 32px));height:min(580px,calc(100vh - 110px));background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:20px;box-shadow:0 24px 70px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.06);display:flex;flex-direction:column;overflow:hidden;z-index:960;animation:aiSlideUp .3s cubic-bezier(.16,1,.3,1)}
+.ai-modal.hide{display:none!important}
+@keyframes aiSlideUp{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.ai-head{padding:12px 16px;background:var(--green);color:var(--on-green);display:flex;align-items:center;justify-content:space-between;gap:10px;flex:none}
+.ai-head-info{display:flex;align-items:center;gap:11px}
+.ai-avatar{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle,var(--gold) 0%,rgba(217,164,65,.2) 70%);border:2px solid var(--gold);display:grid;place-items:center;color:#241a05;font-size:1.15rem;font-weight:800;box-shadow:0 0 12px rgba(217,164,65,.4)}
+.ai-head h3{margin:0;font-size:1.05rem;font-weight:800;color:var(--on-green);display:flex;align-items:center;gap:6px}
+.ai-badge{font-size:.68rem;font-weight:600;background:rgba(255,255,255,.15);padding:2px 7px;border-radius:999px;letter-spacing:.05em}
+.ai-status{margin:2px 0 0;font-size:.74rem;opacity:.9;display:flex;align-items:center;gap:6px}
+.ai-head-tools{display:flex;gap:5px}
+.ai-icon-btn{background:rgba(255,255,255,.12);border:0;color:var(--on-green);width:32px;height:32px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:.9rem;transition:background .2s}
+.ai-icon-btn:hover{background:rgba(255,255,255,.24)}
+.ai-config-drawer{padding:12px 14px;background:var(--bg);border-bottom:1px solid var(--line);font-size:.85rem;flex:none}
+.ai-text-btn{background:none;border:0;color:var(--muted);cursor:pointer;font-size:.78rem;text-decoration:underline}
+.ai-chips-wrap{padding:8px 12px;background:var(--bg);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;flex:none}
+.ai-chips{display:inline-flex;gap:6px}
+.ai-chip{font-family:inherit;font-size:.75rem;padding:4px 11px;border-radius:999px;background:var(--surface);color:var(--ink);border:1px solid var(--line);cursor:pointer;white-space:nowrap;transition:all .2s}
+.ai-chip:hover{border-color:var(--gold);background:var(--gold);color:#241a05}
+.ai-messages{flex:1;padding:14px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.ai-msg{display:flex;flex-direction:column;max-width:88%}
+.ai-msg.user{align-self:flex-end}
+.ai-msg.bot{align-self:flex-start}
+.ai-msg.user .ai-bubble{background:var(--green2);color:#fff;border-radius:16px 16px 4px 16px}
+.ai-msg.bot .ai-bubble{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:16px 16px 16px 4px}
+.ai-bubble{padding:10px 14px;font-size:.9rem;line-height:1.6;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+.ai-bubble p{margin:0 0 6px}
+.ai-bubble p:last-child{margin-bottom:0}
+.ai-bubble a{color:var(--green2);font-weight:700;text-decoration:underline}
+.ai-bubble ul{margin:4px 0 6px;padding-left:18px}
+.ai-bubble li{margin-bottom:3px}
+.ai-act-btn{display:inline-block;margin-top:6px;margin-right:6px;padding:4px 10px;font-size:.78rem;font-weight:700;border-radius:999px;background:var(--gold);color:#241a05;text-decoration:none!important;border:0;cursor:pointer}
+.ai-typing{display:inline-flex;gap:4px;padding:8px 12px}
+.ai-typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:aiBounce 1.4s infinite ease-in-out both}
+.ai-typing i:nth-child(1){animation-delay:-0.32s}
+.ai-typing i:nth-child(2){animation-delay:-0.16s}
+@keyframes aiBounce{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}
+.ai-form{padding:10px 12px;background:var(--surface);border-top:1px solid var(--line);flex:none}
+.ai-input-row{display:flex;gap:7px;align-items:center}
+.ai-input-row input{flex:1;padding:9px 14px;font-size:.88rem;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none}
+.ai-input-row input:focus{border-color:var(--gold)}
+.ai-voice-btn,.ai-send-btn{width:38px;height:38px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;flex:none;font-size:.95rem;transition:transform .2s,background .2s}
+.ai-voice-btn{background:var(--bg);border:1px solid var(--line);color:var(--ink)}
+.ai-voice-btn:hover{background:rgba(0,0,0,.06)}
+.ai-voice-btn.listening{background:#e74c3c;color:#fff;border-color:#e74c3c;animation:pulseLive 1s infinite}
+.ai-send-btn{background:var(--gold);color:#241a05;font-weight:800}
+.ai-send-btn:hover{transform:scale(1.05)}
+.ai-voice-notice{font-size:.74rem;color:#e74c3c;text-align:center;margin-top:4px;font-weight:600}
 </style>
 </head>
 <body>
@@ -250,80 +340,346 @@ footer .hint{font-size:.8rem;opacity:.85;margin:6px 0 0}
   <div class="grid" id="clist"></div>
 </section>
 
-<section id="admin" class="hide">
-  <h2>অ্যাডমিন প্যানেল</h2><p class="lead">সদস্য তালিকা ও প্রকাশনা পরিচালনা</p>
-  <div class="panel adm-only"><h3>সদস্য তালিকা</h3><div class="tbl"><table><thead><tr><th>নাম</th><th>ইমেইল</th><th>ফোন</th><th>যোগদান</th><th></th></tr></thead><tbody id="mrows"></tbody></table></div>
-  <p class="note">নিরাপত্তার জন্য পাসওয়ার্ড কখনো দেখানো হয় না, শুধু নাম ও যোগাযোগের তথ্য দেখা যায়।</p></div>
-  <p class="msg" id="xmsg" role="status"></p>
-  <div class="panel adm-only"><h3>ড্যাশবোর্ড</h3><div id="dash"></div>
-    <p><button class="btn sm" id="expCsv" type="button">সদস্য তালিকা ডাউনলোড (এক্সেল)</button> <button class="btn sm" id="expJson" type="button">সব তথ্যের ব্যাকআপ ডাউনলোড</button></p></div>
-  <div class="panel adm-only"><h3>সম্পাদক নিয়োগ</h3><form id="roleform">
-    <label>সম্পাদকদের জিমেইল (প্রতি লাইনে একটি)<textarea id="ed_list" rows="3"></textarea></label>
-    <button class="btn" type="submit">সংরক্ষণ করুন</button></form>
-    <p class="note">সম্পাদকেরা শুধু লেখা যাচাই, প্রকাশ ও মন্তব্য যাচাই করতে পারবেন। তাঁদের গুগল অ্যাকাউন্ট দিয়ে "অ্যাডমিন/সম্পাদক লগইন" করতে হবে।</p></div>
-  <div class="panel adm-only"><h3>নোটিশ ও সাইটের তথ্য</h3><form id="siteform">
-    <label>নোটিশ (হোমপেজের উপরে দেখাবে, খালি রাখলে লুকানো থাকবে)<textarea id="si_notice" rows="2"></textarea></label>
-    <label>আমাদের কথা<textarea id="si_about" rows="4"></textarea></label>
-    <label>ইংরেজি নোটিশ (ঐচ্ছিক)<textarea id="si_notice_en" rows="2"></textarea></label><label>ইংরেজি "আমাদের কথা" (ঐচ্ছিক)<textarea id="si_about_en" rows="4"></textarea></label><label>ইংরেজি ঠিকানা (ঐচ্ছিক)<input id="si_addr_en"></label>
-    <label>ফোন<input id="si_phone"></label><label>ইমেইল<input id="si_email" type="email"></label><label>ঠিকানা<input id="si_addr"></label>
-    <button class="btn" type="submit">সংরক্ষণ করুন</button></form></div>
-  <div class="panel adm-only"><h3>অনুষ্ঠান</h3><form id="evform">
-    <label>নাম<input id="ev_h" required maxlength="150"></label><label>তারিখ ও সময়<input id="ev_dt" type="datetime-local" required></label>
-    <label>স্থান<input id="ev_place" maxlength="150"></label><label>বিবরণ<textarea id="ev_desc" rows="2" maxlength="500"></textarea></label>
-    <label>ইংরেজি নাম (ঐচ্ছিক)<input id="ev_h_en"></label><label>ইংরেজি স্থান (ঐচ্ছিক)<input id="ev_place_en"></label><label>ইংরেজি বিবরণ (ঐচ্ছিক)<textarea id="ev_desc_en" rows="2"></textarea></label>
-    <button class="btn" type="submit">অনুষ্ঠান যোগ করুন</button></form><div id="evadm"></div></div>
-  <div class="panel adm-only"><h3>ছবির গ্যালারি</h3><form id="gform">
-    <label>ছবি (একসঙ্গে কয়েকটি বাছাই করা যাবে)<input id="g_files" type="file" accept="image/*" multiple required></label>
-    <span id="g_files_opt" class="img-opt-badge hide"></span>
-    <label>ছবির পরিচিতি (ঐচ্ছিক)<input id="g_cap" maxlength="150"></label><label>ইংরেজি ছবির পরিচিতি (ঐচ্ছিক)<input id="g_cap_en" maxlength="150"></label>
-    <button class="btn" type="submit">আপলোড করুন</button></form><div id="gadm"></div></div>
-  <div class="panel adm-only"><h3>ভিডিও ও আবৃত্তি (ইউটিউব লিংক)</h3><form id="vform">
-    <label>শিরোনাম<input id="v_h" required maxlength="150"></label><label>ইংরেজি শিরোনাম (ঐচ্ছিক)<input id="v_h_en"></label><label>ইউটিউব লিংক<input id="v_u" required></label>
-    <button class="btn" type="submit">ভিডিও যোগ করুন</button></form><div id="vadm"></div></div>
-  <div class="panel adm-only"><h3>লেখক ও প্রোফাইল</h3><form id="aform">
-    <label>লেখকের নাম (প্রকাশনার লেখক-নামের সঙ্গে হুবহু মিলতে হবে)<input id="a_n" required maxlength="80"></label>
-    <label>সংক্ষিপ্ত পরিচিতি<textarea id="a_bio" rows="3" maxlength="600"></textarea></label>
-    <label>ইংরেজি নাম (ঐচ্ছিক)<input id="a_n_en"></label><label>ইংরেজি পরিচিতি (ঐচ্ছিক)<textarea id="a_bio_en" rows="3"></textarea></label>
-    <label>ছবি<input id="a_img" type="file" accept="image/*"></label>
-    <span id="a_img_opt" class="img-opt-badge hide"></span>
-    <button class="btn" type="submit">লেখক যোগ করুন</button></form><div id="aadm"></div></div>
-  <div class="panel adm-only"><h3>বছরের সেরা লেখক নির্বাচন</h3><form id="yform">
-    <label>বছর (সাল)<input id="y_year" type="number" min="2021" max="2100" required></label>
-    <label>বিভাগ<select id="y_seg"><option>সব</option><option>কবিতা</option><option>গল্প</option><option>প্রবন্ধ</option></select></label>
-    <p class="note" id="ysug"></p>
-    <label>সদস্য বাছাই করুন<select id="y_mem"></select></label>
-    <button class="btn" type="submit">সনদ দিন</button></form></div>
-  <div class="panel"><h3>মন্তব্য যাচাই</h3><div id="cmtadm"></div></div>
-  <div class="panel adm-only"><h3>যোগাযোগের বার্তা</h3><div id="msgadm"></div></div>
-  <div class="panel adm-only"><h3>পাসওয়ার্ড পুনরুদ্ধারের অনুরোধ</h3><div id="rrows"></div><p class="note">ফোন নম্বর দিয়ে আসা অনুরোধে সদস্যের নিবন্ধিত ইমেইলে রিসেট লিংক পাঠান।</p></div>
-  <div class="panel adm-only"><h3>সনদ ব্যবস্থাপনা</h3>
-  <form id="cform" onsubmit="return false">
-    <label>সাধারণ সম্পাদকের নাম<input id="sn" placeholder="নাম লিখুন"></label>
-    <label>সভাপতির স্বাক্ষর (ছবি)<input id="sg1" type="file" accept="image/*"></label>
-    <span id="sg1_opt" class="img-opt-badge hide"></span>
-    <label>সম্পাদকের স্বাক্ষর (ছবি)<input id="sg2" type="file" accept="image/*"></label>
-    <span id="sg2_opt" class="img-opt-badge hide"></span>
-    <div><button class="btn sm" id="aw" type="button">সাপ্তাহিক সেরা পাঠক নির্ধারণ</button> <button class="btn sm" id="am" type="button">মাসিক সেরা পাঠক নির্ধারণ</button> <button class="btn sm" id="vfy" type="button">পুরনো সনদ যাচাইয়ের জন্য প্রস্তুত করুন</button></div>
-    <p class="msg" id="amsg" role="status"></p>
-    <p class="note">সদস্যরা কোন বিভাগের লেখা কতটি পড়েছেন তা গোনা হয়। বোতাম চাপলে প্রতি বিভাগের সেরা পাঠককে স্বয়ংক্রিয়ভাবে সনদ দেওয়া হয়।</p>
-  </form></div>
-  <div class="panel"><h3>জমা পড়া লেখা (অপেক্ষমাণ)</h3><div id="srows"></div></div>
-  <div class="panel"><h3>নতুন প্রকাশনা যোগ করুন</h3>
-  <form id="pform">
-    <label>ধরন<select id="ptype"><option>কবিতা</option><option>গল্প</option><option>প্রবন্ধ</option><option>সংবাদ</option></select></label>
-    <label>শিরোনাম<input id="ptitle" required></label>
-    <label>লেখক<input id="pauthor" required></label>
-    <label>লেখা
-      <div class="fmt-bar">
-        <button type="button" onclick="window.fmtInsert('pbody','stanza')">¶ স্তবক বিরতি</button>
-        <button type="button" onclick="window.fmtInsert('pbody','quote')">“ ” উদ্ধৃতি</button>
-        <button type="button" onclick="window.fmtInsert('pbody','divider')">--- বিভাজক</button>
+<section id="admin" class="hide adm-cc">
+  <!-- Command Center Header (mirroring portfolio Command Center) -->
+  <div class="adm-header">
+    <div class="adm-header-left">
+      <span class="adm-eyebrow"><i class="adm-dot"></i> কমান্ড সেন্টার · COMMAND CENTER</span>
+      <h2>অ্যাডমিন ও সম্পাদক ড্যাশবোর্ড</h2>
+      <p class="adm-lead">প্ল্যাটফর্মের সদস্য, প্রকাশনা, সনদ ও ডেটাবেস ব্যবস্থাপনা</p>
+    </div>
+    <div class="adm-header-right">
+      <div class="adm-session-card">
+        <div class="adm-session-top">
+          <span class="adm-badge" id="admRoleBadge">অ্যাডমিন</span>
+          <span class="adm-status-live"><i class="pulse-dot"></i> লাইভ সেশন</span>
+        </div>
+        <div class="adm-session-actions">
+          <button class="btn sm" id="admRefreshBtn" type="button" title="ডেটা রিলোড করুন">🔄 রিফ্রেশ</button>
+          <a class="btn sm alt" href="#pubs" style="text-decoration:none">🌐 ওয়েবসাইট</a>
+        </div>
       </div>
-      <textarea id="pbody" rows="6" required></textarea>
-    </label>
-    <label>ইংরেজি শিরোনাম (ঐচ্ছিক)<input id="pen_h"></label><label>ইংরেজি লেখক-নাম (ঐচ্ছিক)<input id="pen_a"></label><label>ইংরেজি অনুবাদ (ঐচ্ছিক)<textarea id="pen_b" rows="4"></textarea></label>
-    <button class="btn" type="submit">প্রকাশ করুন</button><p class="msg" id="pmsg" role="status"></p>
-  </form></div>
+    </div>
+  </div>
+
+  <p class="msg" id="xmsg" role="status"></p>
+
+  <!-- Command Center Navigation Bar -->
+  <div class="adm-toolbar">
+    <div class="adm-tabs" role="tablist">
+      <button class="adm-tab-btn on" data-pane="adm-pane-dash" type="button">📊 ওভারভিউ ও মেট্রিক্স</button>
+      <button class="adm-tab-btn" data-pane="adm-pane-pubs" type="button">📝 প্রকাশনা ও জমা <span class="adm-pill-cnt hide" id="admPubsBadge">0</span></button>
+      <button class="adm-tab-btn adm-only" data-pane="adm-pane-members" type="button">👥 সদস্য ও সম্পাদক</button>
+      <button class="adm-tab-btn adm-only" data-pane="adm-pane-certs" type="button">📜 সনদ ও স্বীকৃতি</button>
+      <button class="adm-tab-btn adm-only" data-pane="adm-pane-events" type="button">📅 অনুষ্ঠান ও মিডিয়া</button>
+      <button class="adm-tab-btn adm-only" data-pane="adm-pane-settings" type="button">⚙️ সাইট ও বার্তা <span class="adm-pill-cnt hide" id="admMsgBadge">0</span></button>
+    </div>
+  </div>
+
+  <!-- Pane 1: Dashboard Overview & Analytics -->
+  <div class="adm-pane on" id="adm-pane-dash">
+    <div class="panel">
+      <div class="adm-pane-head">
+        <div>
+          <h3>📊 প্ল্যাটফর্ম মেট্রিক্স ও বিশ্লেষণ</h3>
+          <p class="note">সদস্যসংখ্যা, সক্রিয় পাঠ, পছন্দ ও প্ল্যাটফর্মের লাইভ পরিসংখ্যান</p>
+        </div>
+        <div class="adm-pane-actions">
+          <button class="btn sm" id="expCsv" type="button">📥 সদস্য তালিকা (Excel/CSV)</button>
+          <button class="btn sm alt" id="expJson" type="button">💾 সম্পূর্ণ ব্যাকআপ (JSON)</button>
+        </div>
+      </div>
+      <div id="dash"></div>
+    </div>
+  </div>
+
+  <!-- Pane 2: Publications, Submissions & Comments -->
+  <div class="adm-pane" id="adm-pane-pubs">
+    <div class="adm-grid-2">
+      <div class="panel">
+        <div class="adm-pane-head">
+          <div>
+            <h3>📥 জমা পড়া লেখা (অপেক্ষমাণ)</h3>
+            <p class="note">পাঠক ও লেখকদের পাঠানো লেখা যাচাই করে অনুমোদন বা বাতিল করুন</p>
+          </div>
+        </div>
+        <div id="srows"></div>
+      </div>
+
+      <div class="panel">
+        <div class="adm-pane-head">
+          <div>
+            <h3>✍️ নতুন প্রকাশনা যোগ করুন</h3>
+            <p class="note">সরাসরি সাইটে কবিতা, গল্প, প্রবন্ধ বা সংবাদ প্রকাশ করুন</p>
+          </div>
+        </div>
+        <form id="pform">
+          <div class="adm-form-row">
+            <label>ধরন<select id="ptype"><option>কবিতা</option><option>গল্প</option><option>প্রবন্ধ</option><option>সংবাদ</option></select></label>
+            <label>লেখক<input id="pauthor" required placeholder="লেখকের নাম"></label>
+          </div>
+          <label>শিরোনাম<input id="ptitle" required placeholder="প্রকাশনার মূল শিরোনাম"></label>
+          <label>লেখা
+            <div class="fmt-bar">
+              <button type="button" onclick="window.fmtInsert('pbody','stanza')">¶ স্তবক বিরতি</button>
+              <button type="button" onclick="window.fmtInsert('pbody','quote')">“ ” উদ্ধৃতি</button>
+              <button type="button" onclick="window.fmtInsert('pbody','divider')">--- বিভাজক</button>
+            </div>
+            <textarea id="pbody" rows="6" required placeholder="এখানে মূল লেখাটি লিখুন..."></textarea>
+          </label>
+          <div class="adm-foldable">
+            <details>
+              <summary>🌐 ইংরেজি অনুবাদ ও তথ্য (ঐচ্ছিক)</summary>
+              <div class="adm-fold-body">
+                <label>ইংরেজি শিরোনাম<input id="pen_h" placeholder="English Title"></label>
+                <label>ইংরেজি লেখক-নাম<input id="pen_a" placeholder="Author Name in English"></label>
+                <label>ইংরেজি অনুবাদ<textarea id="pen_b" rows="3" placeholder="English translation or excerpt..."></textarea></label>
+              </div>
+            </details>
+          </div>
+          <button class="btn" type="submit">প্রকাশ করুন</button><p class="msg" id="pmsg" role="status"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <div class="adm-pane-head">
+        <div>
+          <h3>💬 মন্তব্য যাচাই ও অনুমোদন</h3>
+          <p class="note">প্রকাশিত লেখার পাঠকদের মন্তব্য পর্যালোচনা করুন</p>
+        </div>
+      </div>
+      <div id="cmtadm"></div>
+    </div>
+  </div>
+
+  <!-- Pane 3: Members & Editors (adm-only) -->
+  <div class="adm-pane adm-only" id="adm-pane-members">
+    <div class="panel">
+      <div class="adm-pane-head">
+        <div>
+          <h3>👥 নিবন্ধিত সদস্য তালিকা</h3>
+          <p class="note">নিরাপত্তার জন্য পাসওয়ার্ড কখনো দেখানো হয় না, শুধু নাম ও যোগাযোগের তথ্য দেখা যায়।</p>
+        </div>
+        <div class="adm-search-box">
+          <input id="admMemSearch" type="search" placeholder="🔍 সদস্যের নাম, ইমেইল বা ফোন খুঁজুন...">
+        </div>
+      </div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>নাম</th><th>ইমেইল</th><th>ফোন</th><th>যোগদান</th><th>পদক্ষেপ</th></tr></thead>
+          <tbody id="mrows"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="adm-grid-2" style="margin-top:16px">
+      <div class="panel">
+        <div class="adm-pane-head">
+          <div>
+            <h3>🛡️ সম্পাদক নিয়োগ ও পরিচালনা</h3>
+            <p class="note">সম্পাদকেরা শুধু লেখা যাচাই, প্রকাশ ও মন্তব্য যাচাই করতে পারবেন।</p>
+          </div>
+        </div>
+        <form id="roleform">
+          <label>সম্পাদকদের জিমেইল (প্রতি লাইনে একটি)
+            <textarea id="ed_list" rows="3" placeholder="example1@gmail.com&#10;example2@gmail.com"></textarea>
+          </label>
+          <button class="btn" type="submit">সংরক্ষণ করুন</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <div class="adm-pane-head">
+          <div>
+            <h3>🖋️ লেখক ও তাদের প্রোফাইল</h3>
+            <p class="note">লেখকের নাম প্রকাশনার লেখক-নামের সঙ্গে হুবহু মিলতে হবে</p>
+          </div>
+        </div>
+        <form id="aform">
+          <label>লেখকের নাম<input id="a_n" required maxlength="80"></label>
+          <label>সংক্ষিপ্ত পরিচিতি<textarea id="a_bio" rows="2" maxlength="600"></textarea></label>
+          <div class="adm-form-row">
+            <label>ইংরেজি নাম (ঐচ্ছিক)<input id="a_n_en"></label>
+            <label>ইংরেজি পরিচিতি (ঐচ্ছিক)<textarea id="a_bio_en" rows="2"></textarea></label>
+          </div>
+          <label>ছবি<input id="a_img" type="file" accept="image/*"></label>
+          <span id="a_img_opt" class="img-opt-badge hide"></span>
+          <button class="btn" type="submit">লেখক যোগ করুন</button>
+        </form>
+        <div id="aadm" style="margin-top:12px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pane 4: Certificates & Awards (adm-only) -->
+  <div class="adm-pane adm-only" id="adm-pane-certs">
+    <div class="adm-grid-2">
+      <div class="panel">
+        <div class="adm-pane-head">
+          <div>
+            <h3>📜 সনদ ব্যবস্থাপনা ও স্বাক্ষর</h3>
+            <p class="note">ডিজিটাল সনদে যুক্ত হওয়ার জন্য স্বাক্ষর ও সাধারণ সম্পাদকের নাম সেট করুন</p>
+          </div>
+        </div>
+        <form id="cform" onsubmit="return false">
+          <label>সাধারণ সম্পাদকের নাম<input id="sn" placeholder="নাম লিখুন"></label>
+          <div class="adm-form-row">
+            <label>সভাপতির স্বাক্ষর (ছবি)<input id="sg1" type="file" accept="image/*"></label>
+            <label>সম্পাদকের স্বাক্ষর (ছবি)<input id="sg2" type="file" accept="image/*"></label>
+          </div>
+          <span id="sg1_opt" class="img-opt-badge hide"></span>
+          <span id="sg2_opt" class="img-opt-badge hide"></span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+            <button class="btn sm" id="aw" type="button">🏆 সাপ্তাহিক সেরা পাঠক নির্ধারণ</button>
+            <button class="btn sm" id="am" type="button">🌟 মাসিক সেরা পাঠক নির্ধারণ</button>
+            <button class="btn sm alt" id="vfy" type="button">🔍 পুরনো সনদ যাচাইয়ের জন্য প্রস্তুত</button>
+          </div>
+          <p class="msg" id="amsg" role="status"></p>
+          <p class="note">সদস্যরা কোন বিভাগের লেখা কতটি পড়েছেন তা গোনা হয়। বোতাম চাপলে সেরা পাঠককে স্বয়ংক্রিয়ভাবে সনদ দেওয়া হয়।</p>
+        </form>
+      </div>
+
+      <div class="panel">
+        <div class="adm-pane-head">
+          <div>
+            <h3>🎖️ বছরের সেরা লেখক নির্বাচন</h3>
+            <p class="note">বছর ও বিভাগ বাছাই করে সেরা লেখক হিসেবে বিশেষ সনদ প্রদান করুন</p>
+          </div>
+        </div>
+        <form id="yform">
+          <div class="adm-form-row">
+            <label>বছর (সাল)<input id="y_year" type="number" min="2021" max="2100" required></label>
+            <label>বিভাগ<select id="y_seg"><option>সব</option><option>কবিতা</option><option>গল্প</option><option>প্রবন্ধ</option></select></label>
+          </div>
+          <p class="note" id="ysug"></p>
+          <label>সদস্য বাছাই করুন<select id="y_mem"></select></label>
+          <button class="btn" type="submit">সনদ দিন</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pane 5: Events & Media (adm-only) -->
+  <div class="adm-pane adm-only" id="adm-pane-events">
+    <div class="panel">
+      <div class="adm-pane-head">
+        <div>
+          <h3>📅 নতুন অনুষ্ঠান যোগ ও পরিচালনা</h3>
+          <p class="note">সাহিত্য আসর, সাংস্কৃতিক অনুষ্ঠান বা স্মরণসভার তথ্য যুক্ত করুন</p>
+        </div>
+      </div>
+      <form id="evform">
+        <div class="adm-form-row">
+          <label>অনুষ্ঠানের নাম<input id="ev_h" required maxlength="150" placeholder="অনুষ্ঠানের শিরোনাম"></label>
+          <label>তারিখ ও সময়<input id="ev_dt" type="datetime-local" required></label>
+        </div>
+        <label>স্থান<input id="ev_place" maxlength="150" placeholder="ভেন্যু বা স্থান"></label>
+        <label>বিবরণ<textarea id="ev_desc" rows="2" maxlength="500" placeholder="সংক্ষিপ্ত বিবরণ"></textarea></label>
+        <div class="adm-foldable">
+          <details>
+            <summary>🌐 ইংরেজি তথ্যাদি (ঐচ্ছিক)</summary>
+            <div class="adm-fold-body">
+              <label>ইংরেজি নাম<input id="ev_h_en"></label>
+              <label>ইংরেজি স্থান<input id="ev_place_en"></label>
+              <label>ইংরেজি বিবরণ<textarea id="ev_desc_en" rows="2"></textarea></label>
+            </div>
+          </details>
+        </div>
+        <button class="btn" type="submit">অনুষ্ঠান যোগ করুন</button>
+      </form>
+      <div id="evadm" style="margin-top:14px"></div>
+    </div>
+
+    <div class="adm-grid-2" style="margin-top:16px">
+      <div class="panel">
+        <div class="adm-pane-head">
+          <div>
+            <h3>🖼️ ছবির গ্যালারি আপলোড</h3>
+            <p class="note">একসঙ্গে কয়েকটি ছবি স্বয়ংক্রিয় কম্প্রেশন সহ আপলোড করা যায়</p>
+          </div>
+        </div>
+        <form id="gform">
+          <label>ছবি নির্বাচন করুন<input id="g_files" type="file" accept="image/*" multiple required></label>
+          <span id="g_files_opt" class="img-opt-badge hide"></span>
+          <label>ছবির পরিচিতি (ঐচ্ছিক)<input id="g_cap" maxlength="150"></label>
+          <label>ইংরেজি ছবির পরিচিতি (ঐচ্ছিক)<input id="g_cap_en" maxlength="150"></label>
+          <button class="btn" type="submit">আপলোড করুন</button>
+        </form>
+        <div id="gadm" style="margin-top:12px"></div>
+      </div>
+
+      <div class="panel">
+        <div class="adm-pane-head">
+          <div>
+            <h3>🎬 ভিডিও ও আবৃত্তি (ইউটিউব লিংক)</h3>
+            <p class="note">ইউটিউব ভিডিও বা আবৃত্তির লিংক যুক্ত করুন</p>
+          </div>
+        </div>
+        <form id="vform">
+          <label>ভিডিওর শিরোনাম<input id="v_h" required maxlength="150"></label>
+          <label>ইউটিউব লিংক<input id="v_u" required placeholder="https://www.youtube.com/watch?v=..."></label>
+          <label>ইংরেজি শিরোনাম (ঐচ্ছিক)<input id="v_h_en"></label>
+          <button class="btn" type="submit">ভিডিও যোগ করুন</button>
+        </form>
+        <div id="vadm" style="margin-top:12px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pane 6: Site Settings & Messages (adm-only) -->
+  <div class="adm-pane adm-only" id="adm-pane-settings">
+    <div class="panel">
+      <div class="adm-pane-head">
+        <div>
+          <h3>⚙️ সাইট কনফিগারেশন ও নোটিশ</h3>
+          <p class="note">হোমপেজের ব্যানার নোটিশ, আমাদের কথা ও যোগাযোগের তথ্য আপডেট করুন</p>
+        </div>
+      </div>
+      <form id="siteform">
+        <label>ঘোষণা / নোটিশ (হোমপেজের উপরে দেখাবে, খালি রাখলে লুকানো থাকবে)<textarea id="si_notice" rows="2"></textarea></label>
+        <label>আমাদের কথা<textarea id="si_about" rows="4"></textarea></label>
+        <div class="adm-form-row">
+          <label>ফোন নম্বর<input id="si_phone"></label>
+          <label>ইমেইল ঠিকানা<input id="si_email" type="email"></label>
+        </div>
+        <label>ঠিকানা<input id="si_addr"></label>
+        <div class="adm-foldable">
+          <details>
+            <summary>🌐 ইংরেজি অনুবাদ ও তথ্য (ঐচ্ছিক)</summary>
+            <div class="adm-fold-body">
+              <label>ইংরেজি নোটিশ<textarea id="si_notice_en" rows="2"></textarea></label>
+              <label>ইংরেজি "আমাদের কথা"<textarea id="si_about_en" rows="3"></textarea></label>
+              <label>ইংরেজি ঠিকানা<input id="si_addr_en"></label>
+            </div>
+          </details>
+        </div>
+        <button class="btn" type="submit">সংরক্ষণ করুন</button>
+      </form>
+    </div>
+
+    <div class="adm-grid-2" style="margin-top:16px">
+      <div class="panel">
+        <div class="adm-pane-head">
+          <div>
+            <h3>📬 যোগাযোগের বার্তা</h3>
+            <p class="note">যোগাযোগ ফর্মের মাধ্যমে আসা বার্তা</p>
+          </div>
+        </div>
+        <div id="msgadm"></div>
+      </div>
+
+      <div class="panel">
+        <div class="adm-pane-head">
+          <div>
+            <h3>🔑 পাসওয়ার্ড পুনরুদ্ধারের অনুরোধ</h3>
+            <p class="note">ফোন নম্বর দিয়ে আসা অনুরোধে সদস্যের নিবন্ধিত ইমেইলে রিসেট লিংক পাঠান।</p>
+          </div>
+        </div>
+        <div id="rrows"></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
@@ -361,6 +717,83 @@ footer .hint{font-size:.8rem;opacity:.85;margin:6px 0 0}
 <dialog id="rd"><span class="tag" id="rtag"></span><h2 id="rtitle"></h2><p class="note" id="rmeta"></p><div id="rauthor"></div><div id="rtools"></div><div id="rbody" data-nr style="white-space:pre-wrap"></div><div id="rsocial"></div><p><button class="btn sm" id="rclose" type="button">বন্ধ করুন</button></p></dialog>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- AI Assistant Widget: গিরি সহচর -->
+<div id="aiWidget" class="ai-widget">
+  <!-- Floating Launcher Button -->
+  <button id="aiLauncher" class="ai-launcher" type="button" aria-label="গিরি সহচর এআই সহকারী চালু করুন">
+    <span class="ai-launcher-icon">✦</span>
+    <span class="ai-launcher-label">গিরি সহচর</span>
+    <span class="ai-pulse-dot" title="অনলাইন"></span>
+  </button>
+
+  <!-- Interactive AI Assistant Modal / Window -->
+  <div id="aiModal" class="ai-modal hide" role="dialog" aria-modal="true" aria-labelledby="aiTitle">
+    <!-- Header -->
+    <div class="ai-head">
+      <div class="ai-head-info">
+        <div class="ai-avatar">✦</div>
+        <div>
+          <h3 id="aiTitle">গিরি সহচর <span class="ai-badge">AI Assistant</span></h3>
+          <p class="ai-status"><span class="pulse-dot"></span> <span id="aiEngineStatus">অনলাইন · লোকাল ইন্টেলিজেন্স</span></p>
+        </div>
+      </div>
+      <div class="ai-head-tools">
+        <button id="aiConfigBtn" class="ai-icon-btn" type="button" title="এআই এপিআই কি সেটিংস">⚙️</button>
+        <button id="aiClearBtn" class="ai-icon-btn" type="button" title="কথোপকথন মুছে ফেলুন">🗑️</button>
+        <button id="aiCloseBtn" class="ai-icon-btn close" type="button" title="বন্ধ করুন">✕</button>
+      </div>
+    </div>
+
+    <!-- Optional Gemini API Key Drawer -->
+    <div id="aiConfigDrawer" class="ai-config-drawer hide">
+      <div class="ai-config-box">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <b>✦ জেমিনাই এআই কি (Gemini API Key)</b>
+          <button id="aiConfigClose" class="ai-text-btn" type="button">বন্ধ করুন</button>
+        </div>
+        <p class="note">ঐচ্ছিক: আপনার নিজস্ব Google Gemini API Key দিলে সহকারী আরও বিস্তৃত আলোচনা করতে পারবে। কি খালি রাখলে লোকাল ইন্টেলিজেন্স কাজ করবে। কি শুধুমাত্র আপনার ব্রাউজারে সুরক্ষিত থাকবে।</p>
+        <div style="display:flex;gap:6px;margin-top:6px">
+          <input id="aiApiKeyInput" type="password" placeholder="AIzaSy..." style="flex:1">
+          <button id="aiSaveKeyBtn" class="btn sm" type="button">সংরক্ষণ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggestion Chips -->
+    <div class="ai-chips-wrap">
+      <div class="ai-chips" id="aiChips">
+        <button class="ai-chip" type="button" data-prompt="গিরি সম্প্রীতির লক্ষ্য ও উদ্দেশ্য কী?">✦ গিরি সম্প্রীতি কী?</button>
+        <button class="ai-chip" type="button" data-prompt="কীভাবে লেখা বা কবিতা জমা দেব?">✍️ লেখা কীভাবে জমা দেব?</button>
+        <button class="ai-chip" type="button" data-prompt="অনলাইনে সনদপত্র কীভাবে যাচাই করব?">📜 সনদ যাচাইয়ের নিয়ম?</button>
+        <button class="ai-chip" type="button" data-prompt="সদস্য হওয়ার সুবিধা ও আইডি কার্ড কীভাবে পাব?">🆔 সদস্য আইডি কার্ড?</button>
+        <button class="ai-chip" type="button" data-prompt="প্রতিষ্ঠাতা ও পরিচালনা পরিষদ কারা?">👑 প্রতিষ্ঠাতা ও নির্বাহী?</button>
+        <button class="ai-chip" type="button" data-prompt="সেরা পাঠক বা লেখক কীভাবে হওয়া যায়?">🏆 সেরা পাঠক/লেখক?</button>
+        <button class="ai-chip" type="button" data-prompt="যোগাযোগের ঠিকানা ও ফোন নম্বর কী?">📞 যোগাযোগ ও ঠিকানা</button>
+      </div>
+    </div>
+
+    <!-- Messages Container -->
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-msg bot">
+        <div class="ai-bubble">
+          <p>নমস্কার ও স্বাগতম! আমি <b>গিরি সহচর</b> — গিরি সম্প্রীতির এআই সহকারী। 🏔️</p>
+          <p>গিরি সম্প্রীতির ইতিহাস, লেখা জমা দেওয়ার নিয়ম, সনদপত্র যাচাই, সাহিত্য আসর বা যেকোনো বিষয়ে আমাকে প্রশ্ন করতে পারেন। আমি আপনাকে সহায়তায় প্রস্তুত!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Box & Actions -->
+    <form id="aiForm" class="ai-form" onsubmit="return false">
+      <div class="ai-input-row">
+        <input id="aiInput" type="text" placeholder="গিরি সম্প্রীতি বা সাহিত্য সম্পর্কে প্রশ্ন লিখুন..." autocomplete="off">
+        <button id="aiVoiceBtn" class="ai-voice-btn" type="button" title="মুখে কথা বলুন (Voice)">🎙️</button>
+        <button id="aiSendBtn" class="ai-send-btn" type="submit" title="পাঠান">➤</button>
+      </div>
+      <div id="aiVoiceNotice" class="ai-voice-notice hide">শুনছি... কথা বলুন</div>
+    </form>
+  </div>
+</div>
 
 <script type="module">
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
@@ -545,9 +978,27 @@ function render(){
     const mbtn=mk('button','btn alt','আরও দেখুন ('+bn(list.length-pubLimit)+'টি বাকি)');mbtn.type='button';mbtn.onclick=()=>{pubLimit+=12;render()};mb.appendChild(mbtn);$('plist').appendChild(mb)}
   // admin
   $('admin').classList.toggle('hide',!(S.isAdmin||S.isEditor));document.body.classList.toggle('editor',S.isEditor&&!S.isAdmin);
-  $('mrows').innerHTML='';S.members.forEach(x=>{const r=mk('tr');[x.n,x.e,x.p,x.d].forEach(v=>r.appendChild(mk('td','',v)));
-    const td=mk('td'),b=mk('button','btn sm alt','মুছুন');b.style.color='var(--ink)';b.type='button';
-    b.onclick=()=>{if(confirm('এই সদস্যকে মুছে ফেলবেন?'))deleteDoc(doc(db,'members',x.id))};td.appendChild(b);r.appendChild(td);$('mrows').appendChild(r)});
+  if($('admRoleBadge'))$('admRoleBadge').textContent=S.isAdmin?'অ্যাডমিন মোড':'সম্পাদক মোড';
+  if($('admPubsBadge')){$('admPubsBadge').textContent=bn(S.subs.length);$('admPubsBadge').classList.toggle('hide',!S.subs.length)}
+  if($('admMsgBadge')){const c=S.msgs.length+S.resets.length;$('admMsgBadge').textContent=bn(c);$('admMsgBadge').classList.toggle('hide',!c)}
+  if(S.isEditor&&!S.isAdmin){
+    const onBtn=document.querySelector('.adm-tab-btn.on');
+    if(onBtn&&onBtn.classList.contains('adm-only')){const pb=document.querySelector('.adm-tab-btn[data-pane="adm-pane-pubs"]');if(pb)pb.click()}
+  }
+  const memQ=($('admMemSearch')?$('admMemSearch').value.toLowerCase().trim():'');
+  const fMems=S.members.filter(x=>{
+    if(!memQ)return true;
+    return (x.n&&x.n.toLowerCase().includes(memQ))||(x.e&&x.e.toLowerCase().includes(memQ))||(x.p&&String(x.p).includes(memQ))||(x.mid&&x.mid.toLowerCase().includes(memQ));
+  });
+  $('mrows').innerHTML='';
+  if(!fMems.length){
+    const tr=mk('tr'),td=mk('td');td.colSpan=5;td.style.cssText='text-align:center;color:var(--muted);padding:18px';
+    td.textContent=memQ?'কোনো সদস্যের তথ্য মেলেনি।':'কোনো সদস্যের তথ্য নেই।';tr.appendChild(td);$('mrows').appendChild(tr);
+  }else{
+    fMems.forEach(x=>{const r=mk('tr');[x.n,x.e,x.p,x.d].forEach(v=>r.appendChild(mk('td','',v||'')));
+      const td=mk('td'),b=mk('button','btn sm alt','মুছুন');b.style.color='var(--ink)';b.type='button';
+      b.onclick=()=>{if(confirm('এই সদস্যকে মুছে ফেলবেন?'))deleteDoc(doc(db,'members',x.id))};td.appendChild(b);r.appendChild(td);$('mrows').appendChild(r)});
+  }
   $('srows').innerHTML='';if(!S.subs.length)$('srows').textContent='কোনো নতুন লেখা জমা পড়েনি।';
   S.subs.forEach(x=>{const c=mk('div','panel');const q=mk('p','',x.b);q.style.whiteSpace='pre-wrap';
     const ok=mk('button','btn sm','প্রকাশ করুন'),no=mk('button','btn sm alt','বাতিল');ok.type=no.type='button';no.style.cssText='color:var(--ink);margin-left:8px';
@@ -1208,6 +1659,216 @@ bindCompressNotice('g_files','g_files_opt',900);
 bindCompressNotice('sg1','sg1_opt',320,'image/png');
 bindCompressNotice('sg2','sg2_opt',320,'image/png');
 if($('q_clear'))$('q_clear').onclick=()=>{if($('q')){$('q').value='';render();$('q').focus()}};
+
+// ---------- Command Center Tab & Search Logic ----------
+document.querySelectorAll('.adm-tab-btn').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.adm-tab-btn').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    const target=btn.dataset.pane;
+    document.querySelectorAll('.adm-pane').forEach(p=>p.classList.toggle('on',p.id===target));
+  };
+});
+if($('admMemSearch'))$('admMemSearch').oninput=()=>render();
+if($('admRefreshBtn'))$('admRefreshBtn').onclick=()=>{render();renderDash();toast('ডেটা রিফ্রেশ করা হয়েছে')};
+
+// ---------- গিরি সহচর এআই সহকারী (Giri Shohochor AI Assistant) ----------
+const aiLauncher=$('aiLauncher'),aiModal=$('aiModal'),aiCloseBtn=$('aiCloseBtn'),aiClearBtn=$('aiClearBtn');
+const aiConfigBtn=$('aiConfigBtn'),aiConfigDrawer=$('aiConfigDrawer'),aiConfigClose=$('aiConfigClose');
+const aiSaveKeyBtn=$('aiSaveKeyBtn'),aiApiKeyInput=$('aiApiKeyInput'),aiEngineStatus=$('aiEngineStatus');
+const aiMessages=$('aiMessages'),aiForm=$('aiForm'),aiInput=$('aiInput'),aiVoiceBtn=$('aiVoiceBtn'),aiVoiceNotice=$('aiVoiceNotice');
+
+let aiKey='';
+try{aiKey=localStorage.getItem('gs_gemini_key')||''}catch(e){}
+if(aiApiKeyInput&&aiKey)aiApiKeyInput.value=aiKey;
+const updateAiStatus=()=>{
+  if(!aiEngineStatus)return;
+  aiEngineStatus.textContent=aiKey?'অনলাইন · জেমিনাই এআই':'অনলাইন · লোকাল ইন্টেলিজেন্স';
+};
+updateAiStatus();
+
+if(aiLauncher){
+  aiLauncher.onclick=()=>{
+    aiModal.classList.toggle('hide');
+    if(!aiModal.classList.contains('hide')&&aiInput)aiInput.focus();
+  };
+}
+if(aiCloseBtn)aiCloseBtn.onclick=()=>aiModal.classList.add('hide');
+if(aiConfigBtn)aiConfigBtn.onclick=()=>aiConfigDrawer.classList.toggle('hide');
+if(aiConfigClose)aiConfigClose.onclick=()=>aiConfigDrawer.classList.add('hide');
+if(aiSaveKeyBtn){
+  aiSaveKeyBtn.onclick=()=>{
+    aiKey=(aiApiKeyInput.value||'').trim();
+    try{
+      if(aiKey)localStorage.setItem('gs_gemini_key',aiKey);
+      else localStorage.removeItem('gs_gemini_key');
+    }catch(e){}
+    updateAiStatus();
+    aiConfigDrawer.classList.add('hide');
+    toast(aiKey?'জেমিনাই এপিআই কি সংরক্ষিত হয়েছে!':'লোকাল মোড সক্রিয় হয়েছে');
+  };
+}
+
+const welcomeMsgHtml=`<p>নমস্কার ও স্বাগতম! আমি <b>গিরি সহচর</b> — গিরি সম্প্রীতির এআই সহকারী। 🏔️</p><p>গিরি সম্প্রীতির ইতিহাস, লেখা জমা দেওয়ার নিয়ম, সনদপত্র যাচাই, সাহিত্য আসর বা যেকোনো বিষয়ে আমাকে প্রশ্ন করতে পারেন। আমি আপনাকে সহায়তায় প্রস্তুত!</p>`;
+
+if(aiClearBtn){
+  aiClearBtn.onclick=()=>{
+    aiMessages.innerHTML='';
+    appendAiMsg(welcomeMsgHtml,'bot',false);
+    toast('কথোপকথন মুছে ফেলা হয়েছে');
+  };
+}
+
+document.querySelectorAll('.ai-chip').forEach(chip=>{
+  chip.onclick=()=>sendAiUserMessage(chip.dataset.prompt||chip.textContent);
+});
+
+function appendAiMsg(content,role,isText=true){
+  const msgEl=document.createElement('div');
+  msgEl.className='ai-msg '+role;
+  const bubble=document.createElement('div');
+  bubble.className='ai-bubble';
+  if(isText)bubble.innerHTML=formatAiMarkdown(content);
+  else bubble.innerHTML=content;
+  msgEl.appendChild(bubble);
+  aiMessages.appendChild(msgEl);
+  aiMessages.scrollTop=aiMessages.scrollHeight;
+  return msgEl;
+}
+
+function showAiTyping(){
+  const d=document.createElement('div');
+  d.className='ai-msg bot';
+  d.id='aiTyping';
+  d.innerHTML='<div class="ai-bubble"><div class="ai-typing"><i></i><i></i><i></i></div></div>';
+  aiMessages.appendChild(d);
+  aiMessages.scrollTop=aiMessages.scrollHeight;
+}
+function hideAiTyping(){
+  const d=$('aiTyping');
+  if(d)d.remove();
+}
+
+function formatAiMarkdown(txt){
+  if(!txt)return '';
+  let s=txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  s=s.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>');
+  s=s.replace(/\*(.*?)\*/g,'<i>$1</i>');
+  s=s.replace(/\n/g,'<br>');
+  s=s.replace(/\[(.*?)\]\((.*?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+  if(txt.includes('#submit')||txt.includes('লেখা জমা'))s+=`<br><a class="ai-act-btn" href="#submit" onclick="$('aiModal').classList.add('hide')">✍️ লেখা জমা দিন</a>`;
+  if(txt.includes('#verify')||txt.includes('সনদ যাচাই'))s+=`<br><a class="ai-act-btn" href="#verify" onclick="$('aiModal').classList.add('hide')">🔍 সনদ যাচাই করুন</a>`;
+  if(txt.includes('লগইন')||txt.includes('নিবন্ধন')||txt.includes('সদস্য'))s+=`<br><button class="ai-act-btn" type="button" onclick="openD(1);$('aiModal').classList.add('hide')">👥 সদস্য হোন</button>`;
+  if(txt.includes('#events')||txt.includes('অনুষ্ঠান'))s+=`<br><a class="ai-act-btn" href="#events" onclick="$('aiModal').classList.add('hide')">📅 অনুষ্ঠান দেখুন</a>`;
+  return s;
+}
+
+function getLocalAiResponse(q){
+  const text=q.toLowerCase().trim();
+  if(text.includes('গিরি সম্প্রীতি')||text.includes('লক্ষ্য')||text.includes('উদ্দেশ্য')||text.includes('ইতিহাস')||text.includes('সম্প্রীতি')||text.includes('কবে')||text.includes('about')||text.includes('mission')){
+    return "গিরি সম্প্রীতি বান্দরবানের একটি অগ্রণী সাহিত্য, সাংস্কৃতিক ও সামাজিক সংগঠন। **প্রতিষ্ঠাকাল: ২০২১, বান্দরবান**।\n\n**মূল লক্ষ্য ও উদ্দেশ্য:**\n• পার্বত্য চট্টগ্রাম তথা বাংলার বৈচিত্র্যময় সাহিত্য ও সংস্কৃতির বিকাশ সাধন।\n• পাহাড়ি ও সমতলের মানুষের মধ্যে সাম্প্রদায়িক সম্প্রীতির মেলবন্ধন রচনা।\n• নবীন ও প্রবীণ লেখকদের জন্য একটি উন্মুক্ত সৃজনশীল সাহিত্য পত্রিকা ও ডিজিটাল প্ল্যাটফর্ম পরিচালনা।\n• নিয়মিত সাহিত্য আসর, আবৃত্তি, বিতর্ক ও সাংস্কৃতিক আয়োজন।\n\nএখানে কবিতা, গল্প, প্রবন্ধ ও সাহিত্য সংবাদ উন্মুক্তভাবে চর্চা করা হয়।";
+  }
+  if(text.includes('প্রতিষ্ঠাতা')||text.includes('সভাপতি')||text.includes('সম্পাদক')||text.includes('রশিদ')||text.includes('আলকামাহ')||text.includes('পরিচালনা')||text.includes('নেতৃত্ব')||text.includes('founder')||text.includes('leader')){
+    return "গিরি সম্প্রীতির প্রতিষ্ঠাতা ও বর্তমান নেতৃত্ব:\n\n👑 **প্রতিষ্ঠাতা ও সভাপতি:** রশিদ আহমদ\n⚡ **সাধারণ সম্পাদক ও নির্বাহী পরিচালক:** আলকামাহ শাকিলুর রশিদ\n\nতাঁদের সার্বিক পরিচালনা, সম্পাদনা পর্ষদ এবং ৮০০+ সাহিত্যপ্রেমী সদস্যের ঐকান্তিক সহযোগিতায় সংগঠনটি সাহিত্য ও সম্প্রীতির বার্তা ছড়িয়ে দিচ্ছে।";
+  }
+  if(text.includes('লেখা')||text.includes('কবিতা')||text.includes('গল্প')||text.includes('প্রবন্ধ')||text.includes('জমা')||text.includes('প্রকাশ')||text.includes('পাঠাব')||text.includes('submit')){
+    return "গিরি সম্প্রীতিতে লেখা জমা দেওয়া সম্পূর্ণ উন্মুক্ত ও সহজ!\n\n**লেখা জমা দেওয়ার ধাপসমূহ:**\n১. প্রথমে সাইটে **লগইন বা নিবন্ধন** করুন (নিবন্ধন একদম বিনামূল্যে)।\n২. হোমপেজের **'লেখা জমা দিন'** বাটনে ক্লিক করুন।\n৩. লেখার ধরন (কবিতা, গল্প, প্রবন্ধ বা সংবাদ), আপনার নাম ও শিরোনাম দিন।\n৪. মূল লেখাটি লিখে 'জমা দিন' বাটনে চাপুন।\n\nআমাদের সম্পাদনা পর্ষদ লেখাটি পর্যালোচনা করে অনুমোদন দিলে তা গিরি সম্প্রীতি প্রকাশনা তালিকায় চলে আসবে।\n\n👉 [লেখা জমা দিতে এখানে যান](#submit)";
+  }
+  if(text.includes('সনদ')||text.includes('সার্টিফিকেট')||text.includes('যাচাই')||text.includes('ভেরিফাই')||text.includes('কিউআর')||text.includes('qr')||text.includes('certificate')||text.includes('verify')){
+    return "গিরি সম্প্রীতির সকল সনদ ডিজিটাল, স্বয়ংক্রিয় এবং কিউআর কোড ভেরিফাইড!\n\n**সনদের ধরন:**\n• **শুভেচ্ছা সনদ:** যেকোনো পাঠক সদস্য হিসেবে যুক্ত হলেই সাথে সাথে পান।\n• **সেরা পাঠক সনদ:** পাঠকদের নিয়মিত পাঠের রেকর্ডের ভিত্তিতে সাপ্তাহিক ও মাসিক সনদ প্রদান করা হয়।\n• **সেরা লেখক সনদ:** প্রতি বছর প্রতিটি বিভাগে সেরা লেখকদের বিশেষ সম্মাননা সনদ দেওয়া হয়।\n\n**অনলাইনে সনদ যাচাইয়ের নিয়ম:**\n১. সাইটের ফুটারের **'সনদ যাচাই'** লিংকে যান।\n২. সনদের ইউনিক ভেরিফিকেশন নম্বর (যেমন: `GS-XXXXXX-W`) দিন অথবা ক্যামেরা দিয়ে কিউআর কোড স্ক্যান করুন।\n৩. মুহূর্তের মধ্যে সনদটি আসল কি না এবং কার নামে ইস্যু করা তা যাচাই হয়ে যাবে।\n\n👉 [সনদ যাচাই পেজে যান](#verify)";
+  }
+  if(text.includes('আইডি')||text.includes('কার্ড')||text.includes('মেম্বার')||text.includes('id card')||text.includes('member id')){
+    return "গিরি সম্প্রীতির প্রতিটি নিবন্ধিত সদস্যের রয়েছে নিজস্ব **ডিজিটাল পাঠক আইডি কার্ড**।\n\n**আইডি কার্ড পাওয়ার নিয়ম:**\n১. আপনার অ্যাকাউন্টে লগইন করুন।\n২. হোমপেজে 'আমার সনদ' সেকশনে যান।\n৩. **'আমার আইডি কার্ড দেখুন'** বোতামে ক্লিক করুন।\n৪. আপনার ছবি, মেম্বার আইডি ও যোগদানের তারিখ সহ আকর্ষণীয় কার্ডটি সরাসরি দেখতে, ছবি হিসেবে বা পিডিএফ আকারে ডাউনলোড করতে পারবেন!";
+  }
+  if(text.includes('সেরা পাঠক')||text.includes('সেরা লেখক')||text.includes('পুরস্কার')||text.includes('স্বীকৃতি')||text.includes('পঠন')||text.includes('award')||text.includes('winner')){
+    return "পাঠাভ্যাস বৃদ্ধি ও সাহিত্যিকদের অনুপ্রেরণা দিতে গিরি সম্প্রীতি দুটি বিশেষ স্বীকৃতি চালু রেখেছে:\n\n১. **সেরা পাঠক (সাপ্তাহিক ও মাসিক):** আপনি ওয়েবসাইটে লগইন থাকা অবস্থায় বিভিন্ন কবিতা, গল্প ও প্রবন্ধ পড়ার সাথে সাথে আপনার রিডিং রেকর্ড গোনা হয়। সর্বোচ্চ পাঠকদের স্বয়ংক্রিয়ভাবে 'সেরা পাঠক' সনদ ও স্বীকৃতি প্রদান করা হয়।\n২. **বছরের সেরা লেখক:** প্রতি বছর কবিতা, গল্প ও প্রবন্ধ বিভাগে গুণগত মানের ভিত্তিতে বিচারকমণ্ডলী সেরা লেখক নির্বাচন করে সম্মাননা দেন।";
+  }
+  if(text.includes('অনুষ্ঠান')||text.includes('ইভেন্ট')||text.includes('আসর')||text.includes('আবৃত্তি')||text.includes('নাটক')||text.includes('event')){
+    return "গিরি সম্প্রীতি নিয়মিত সাহিত্য আড্ডা, কবিতা পাঠ, সাংস্কৃতিক অনুষ্ঠান ও জাতীয় দিবসে বিশেষ কর্মসূচির আয়োজন করে।\n\nআমাদের 'অনুষ্ঠান' সেকশনে গিয়ে আপনি:\n• আসন্ন অনুষ্ঠানের সময় ও স্থান দেখতে পারবেন।\n• ক্যালেন্ডারে যোগ করতে পারবেন (Google / Outlook / Apple / ICS)।\n• **'আমি আসব' (RSVP)** বাটনে ক্লিক করে উপস্থিতি নিশ্চিত করতে পারবেন।\n\n👉 [অনুষ্ঠান সেকশন দেখুন](#events)";
+  }
+  if(text.includes('যোগাযোগ')||text.includes('ঠিকানা')||text.includes('ফোন')||text.includes('মোবাইল')||text.includes('ইমেইল')||text.includes('ফেসবুক')||text.includes('গ্রুপ')||text.includes('contact')||text.includes('phone')||text.includes('email')){
+    return "গিরি সম্প্রীতি পরিবারের সাথে যোগাযোগের ঠিকানা ও তথ্য:\n\n📍 **ঠিকানা:** বান্দরবান, চট্টগ্রাম, বাংলাদেশ\n📞 **ফোন:** ০১৮১৩-৯৪৯০১৪\n👥 **ফেসবুক পরিবার:** [আমাদের ফেসবুক গ্রুপে যুক্ত হোন](https://www.facebook.com/share/g/1DyFnE15Vz/)\n\nএছাড়াও সাইটের নিচে সরাসরি বার্তা পাঠানোর ফর্ম রয়েছে, যার মাধ্যমে আপনি যেকোনো সময় বার্তা পাঠাতে পারেন।";
+  }
+  if(text.includes('সদস্য')||text.includes('নিবন্ধন')||text.includes('রেজিস্ট্রেশন')||text.includes('লগইন')||text.includes('জয়েন')||text.includes('join')||text.includes('signup')){
+    return "গিরি সম্প্রীতিতে সদস্য হওয়া সম্পূর্ণ **বিনামূল্যে ও উন্মুক্ত**!\n\n**সদস্য হলে কী কী সুবিধা পাবেন?**\n• তাৎক্ষণিক ডিজিটাল শুভেচ্ছা সনদপত্র।\n• নিজস্ব ছবি ও মেম্বার আইডি সহ ডিজিটাল পাঠক আইডি কার্ড।\n• সাইটে সরাসরি কবিতা, গল্প ও প্রবন্ধ জমা দেওয়ার সুযোগ।\n• লেখা পড়ার রেকর্ড ও 'সেরা পাঠক' হিসেবে স্বীকৃতি পাওয়ার সুযোগ।\n• প্রকাশিত লেখায় লাইক ও মন্তব্য করার সুবিধা।\n\nসদস্য হতে উপরের 'সদস্য হোন' বোতামে ক্লিক করুন।";
+  }
+  if(text.includes('পরামর্শ')||text.includes('কীভাবে লিখব')||text.includes('ছন্দ')||text.includes('সাহিত্য চর্চা')||text.includes('tips')||text.includes('poem')){
+    return "সাহিত্য সৃষ্টি মানুষের আত্মার গভীরতম প্রকাশ। ভালো লেখার জন্য কিছু পরামর্শ:\n\n১. **প্রচুর পাঠ:** যেকোনো ভালো লেখকের প্রথম গুণ হলো তিনি একনিষ্ঠ পাঠক। বিশ্বসাহিত্য ও বাংলা সাহিত্যের ক্ল্যাসিক লেখাগুলো পড়ুন।\n২. **অনুভূতিকে সত্য রাখা:** কৃত্রিমতার চেয়ে নিজের গভীর অনুভূতিকে সহজ ও প্রাঞ্জল ভাষায় তুলে ধরুন।\n৩. **শব্দচয়ন ও পরিমার্জন:** লেখা শেষ করার পর কয়েকবার উচ্চস্বরে পড়ুন, অতিরিক্ত শব্দ বাদ দিয়ে ভাব সুসংহত করুন।\n\nগিরি সম্প্রীতি সবসময় নতুন লেখকদের উৎসাহ ও প্রেরণা জোগাতে প্রতিশ্রুতিবদ্ধ। আপনার লেখা জমা দিতে পারেন আমাদের প্ল্যাটফর্মে!";
+  }
+  if(text==='hi'||text==='hello'||text==='নমস্কার'||text==='সালাম'||text==='কেমন আছেন'||text==='কেমন আছ'||text.includes('কেমন')){
+    return "নমস্কার ও শুভেচ্ছা! আমি খুব ভালো আছি। গিরি সম্প্রীতি পরিবারে আপনাকে স্বাগতম! বাংলা সাহিত্য, আমাদের সংগঠন বা সাইট সংক্রান্ত যেকোনো তথ্যের জন্য আমাকে জিজ্ঞেস করতে পারেন। আজ আপনাকে কীভাবে সহায়তা করতে পারি?";
+  }
+  return "ধন্যবাদ আপনার প্রশ্নের জন্য! গিরি সম্প্রীতি বান্দরবানের সাহিত্য, সাংস্কৃতিক ও সম্প্রীতির বন্ধনে গঠিত একটি ঐতিহ্যবাহী সংগঠন।\n\nআমি আপনাকে নিচের বিষয়গুলোতে সাহায্য করতে পারি:\n• **গিরি সম্প্রীতি সম্পর্কে জানুন:** লক্ষ্য, প্রতিষ্ঠা (২০২১) ও নেতৃত্ব\n• **লেখা জমা দেওয়া:** কবিতা, গল্প ও প্রবন্ধ প্রকাশের নিয়ম\n• **সনদ ও ভেরিফিকেশন:** শুভেচ্ছা সনদ, সেরা পাঠক ও অনলাইনে যাচাই\n• **সদস্য সুবিধা:** পাঠক আইডি কার্ড ও রিডিং ড্যাশবোর্ড\n• **যোগাযোগ:** ফোন, ঠিকানা ও ফেসবুক পরিবার\n\nআপনার সুনির্দিষ্ট প্রশ্নটি লিখুন অথবা প্রস্তাবিত বোতামগুলোতে চাপুন!";
+}
+
+async function sendAiUserMessage(promptText){
+  const q=(promptText||aiInput.value||'').trim();
+  if(!q)return;
+  if(aiInput)aiInput.value='';
+  appendAiMsg(q,'user');
+  showAiTyping();
+
+  if(aiKey){
+    try{
+      const sysPrompt="You are Giri Shohochor (গিরি সহচর), the wise, warm, and eloquent AI assistant of Giri Sompriti (গিরি সম্প্রীতি), a renowned literary, cultural, and social organization based in Bandarban, Chittagong, Bangladesh, founded in 2021. President: Rashid Ahmad; General Secretary: Alkamah Sakilur Rashid. Answer helpfully, respectfully, and beautifully in Bengali (or English if requested). Maintain high literary taste.";
+      const payload={contents:[{role:'user',parts:[{text:sysPrompt+"\n\nUser Question: "+q}]}]};
+      const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(aiKey)}`;
+      const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      if(res.ok){
+        const data=await res.json();
+        const ans=data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if(ans){
+          hideAiTyping();
+          appendAiMsg(ans,'bot');
+          return;
+        }
+      }
+    }catch(err){console.warn('Gemini API call failed, falling back to local engine',err)}
+  }
+
+  setTimeout(()=>{
+    hideAiTyping();
+    appendAiMsg(getLocalAiResponse(q),'bot');
+  },300);
+}
+
+if(aiForm)aiForm.onsubmit=e=>{e.preventDefault();sendAiUserMessage()};
+
+let aiSpeechRec=null;
+if('SpeechRecognition' in window||'webkitSpeechRecognition' in window){
+  const SpeechClass=window.SpeechRecognition||window.webkitSpeechRecognition;
+  aiSpeechRec=new SpeechClass();
+  aiSpeechRec.continuous=false;
+  aiSpeechRec.interimResults=false;
+  aiSpeechRec.lang='bn-BD';
+  aiSpeechRec.onstart=()=>{
+    if(aiVoiceBtn)aiVoiceBtn.classList.add('listening');
+    if(aiVoiceNotice){aiVoiceNotice.textContent='🎙️ শুনছি... কথা বলুন';aiVoiceNotice.classList.remove('hide')}
+  };
+  aiSpeechRec.onend=()=>{
+    if(aiVoiceBtn)aiVoiceBtn.classList.remove('listening');
+    if(aiVoiceNotice)aiVoiceNotice.classList.add('hide');
+  };
+  aiSpeechRec.onerror=()=>{
+    if(aiVoiceBtn)aiVoiceBtn.classList.remove('listening');
+    if(aiVoiceNotice)aiVoiceNotice.classList.add('hide');
+  };
+  aiSpeechRec.onresult=e=>{
+    const transcript=e.results[0][0].transcript;
+    if(transcript){
+      if(aiInput)aiInput.value=transcript;
+      sendAiUserMessage(transcript);
+    }
+  };
+}
+if(aiVoiceBtn){
+  aiVoiceBtn.onclick=()=>{
+    if(!aiSpeechRec){toast('আপনার ব্রাউজারে স্পিচ রিকগনিশন সমর্থিত নয়');return}
+    try{aiSpeechRec.start()}catch(e){try{aiSpeechRec.stop()}catch(err){}}
+  };
+}
+
 render();
 $('y_year').value=new Date().getFullYear();$('y_year').oninput=$('y_seg').onchange=renderAuthors;
 if(lang==='en')setLang('en');
