@@ -97,7 +97,7 @@ dialog::backdrop{background:rgba(0,0,0,.6)}
 .note{font-size:.82rem;color:var(--muted)}
 .hide{display:none!important}
 footer{margin-top:50px;background:var(--green);color:var(--on-green);text-align:center;padding:24px 20px 30px;font-size:.9rem}
-.cert{background:#fffaf0;color:#1d2a21;border:8px double #b9852a;outline:3px solid #0f4a2c;outline-offset:-16px;padding:30px 36px;text-align:center;min-width:620px;font-family:inherit}
+.cert{background:#fffaf0;color:#1d2a21;border:8px double #b9852a;outline:3px solid #0f4a2c;outline-offset:-16px;padding:28px 36px 36px;text-align:center;min-width:620px;font-family:inherit}
 .cert img.cl{width:70px;height:70px;border-radius:50%}
 .cert h3{font-size:1.9rem;color:#0f4a2c;margin:4px 0}
 .cert .ph{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #b9852a;background:#eee}
@@ -777,7 +777,7 @@ footer .hint{font-size:.8rem;opacity:.85;margin:6px 0 0}
     <div class="ai-messages" id="aiMessages">
       <div class="ai-msg bot">
         <div class="ai-bubble">
-          <p>নমস্কার ও স্বাগতম! আমি <b>গিরি সহচর</b> — গিরি সম্প্রীতির এআই সহকারী। 🏔️</p>
+          <p>স্বাগতম ও আন্তরিক শুভেচ্ছা! আমি <b>গিরি সহচর</b> — গিরি সম্প্রীতির এআই সহকারী। 🏔️</p>
           <p>গিরি সম্প্রীতির ইতিহাস, লেখা জমা দেওয়ার নিয়ম, সনদপত্র যাচাই, সাহিত্য আসর বা যেকোনো বিষয়ে আমাকে প্রশ্ন করতে পারেন। আমি আপনাকে সহায়তায় প্রস্তুত!</p>
         </div>
       </div>
@@ -1527,25 +1527,25 @@ async function drawCertCanvas(c){const W=1600,H=1130,cv=document.createElement('
   g.fillStyle='#fffaf0';g.fillRect(0,0,W,H);
   g.strokeStyle='#b9852a';g.lineWidth=16;g.strokeRect(22,22,W-44,H-44);g.lineWidth=3;g.strokeRect(46,46,W-92,H-92);g.strokeStyle='#0f4a2c';g.lineWidth=5;g.strokeRect(58,58,W-116,H-116);
   g.textAlign='center';
-  g.save();g.beginPath();g.arc(cx,128,56,0,7);g.clip();if(logo)g.drawImage(logo,cx-56,72,112,112);g.restore();
-  g.strokeStyle='#b9852a';g.lineWidth=4;g.beginPath();g.arc(cx,128,58,0,7);g.stroke();
-  g.fillStyle='#0f4a2c';g.font=FF(800,52);g.fillText(T('গিরি সম্প্রীতি'),cx,248);
-  g.fillStyle='#1d2a21';g.font=FF(400,24);g.fillText(T('সাহিত্য, সাংস্কৃতিক ও সামাজিক সংগঠন · প্রতিষ্ঠাকাল ২০২১'),cx,286);
-  g.fillStyle='#7a4f0a';g.font=FF(800,58);g.fillText(T(CT[c.t]),cx,360);
-  g.fillStyle='#1d2a21';g.font=FF(400,26);g.fillText(T('এই মর্মে প্রত্যয়ন করা যাচ্ছে যে'),cx,404);
-  g.save();g.beginPath();g.arc(cx,486,62,0,7);g.clip();
-  if(photo){const k=Math.max(124/photo.width,124/photo.height);g.drawImage(photo,cx-photo.width*k/2,486-photo.height*k/2,photo.width*k,photo.height*k)}else{g.fillStyle='#e8e2d0';g.fillRect(cx-62,424,124,124)}
-  g.restore();g.strokeStyle='#b9852a';g.lineWidth=5;g.beginPath();g.arc(cx,486,64,0,7);g.stroke();
-  g.fillStyle='#1d2a21';g.font=FF(800,44);g.fillText(T(c.n),cx,598);
-  g.font=FF(400,28);wrapLines(g,T(certBody(c)),1060).slice(0,6).forEach((l,i)=>g.fillText(l,cx,652+i*42));
-  g.fillStyle='#58503a';g.font=FF(400,22);g.fillText(T('সনদ নং:')+' '+c.no+' · '+T('তারিখ:')+' '+T(c.d),cx,884);
+  g.save();g.beginPath();g.arc(cx,120,50,0,7);g.clip();if(logo)g.drawImage(logo,cx-50,70,100,100);g.restore();
+  g.strokeStyle='#b9852a';g.lineWidth=4;g.beginPath();g.arc(cx,120,52,0,7);g.stroke();
+  g.fillStyle='#0f4a2c';g.font=FF(800,48);g.fillText(T('গিরি সম্প্রীতি'),cx,220);
+  g.fillStyle='#1d2a21';g.font=FF(400,22);g.fillText(T('সাহিত্য, সাংস্কৃতিক ও সামাজিক সংগঠন · প্রতিষ্ঠাকাল ২০২১'),cx,256);
+  g.fillStyle='#7a4f0a';g.font=FF(800,52);g.fillText(T(CT[c.t]),cx,324);
+  g.fillStyle='#1d2a21';g.font=FF(400,24);g.fillText(T('এই মর্মে প্রত্যয়ন করা যাচ্ছে যে'),cx,364);
+  g.save();g.beginPath();g.arc(cx,438,54,0,7);g.clip();
+  if(photo){const k=Math.max(108/photo.width,108/photo.height);g.drawImage(photo,cx-photo.width*k/2,438-photo.height*k/2,photo.width*k,photo.height*k)}else{g.fillStyle='#e8e2d0';g.fillRect(cx-54,384,108,108)}
+  g.restore();g.strokeStyle='#b9852a';g.lineWidth=4;g.beginPath();g.arc(cx,438,56,0,7);g.stroke();
+  g.fillStyle='#1d2a21';g.font=FF(800,40);g.fillText(T(c.n),cx,532);
+  g.font=FF(400,26);wrapLines(g,T(certBody(c)),1080).slice(0,5).forEach((l,i)=>g.fillText(l,cx,580+i*38));
+  g.fillStyle='#58503a';g.font=FF(400,21);g.fillText(T('সনদ নং:')+' '+c.no+' · '+T('তারিখ:')+' '+T(c.d),cx,730);g.strokeStyle='#d4c5a0';g.lineWidth=1.5;g.beginPath();g.moveTo(cx-180,750);g.lineTo(cx+180,750);g.stroke();
   const sig=(x,img,nm,role)=>{g.fillStyle='#0f4a2c';
-    if(img){const k=Math.min(240/img.width,64/img.height);g.globalCompositeOperation='multiply';g.drawImage(img,x-img.width*k/2,944,img.width*k,img.height*k);g.globalCompositeOperation='source-over'}
-    else{g.font=FF(400,36,true);g.fillText(T(nm),x,990)}
-    g.strokeStyle='#1d2a21';g.lineWidth=2;g.beginPath();g.moveTo(x-170,1012);g.lineTo(x+170,1012);g.stroke();
-    g.fillStyle='#1d2a21';g.font=FF(800,26);g.fillText(T(nm),x,1046);g.font=FF(400,20);g.fillText(T(role),x,1076)};
+    if(img){const k=Math.min(220/img.width,52/img.height);g.globalCompositeOperation='multiply';g.drawImage(img,x-img.width*k/2,788,img.width*k,img.height*k);g.globalCompositeOperation='source-over'}
+    else{g.font=FF(400,32,true);g.fillText(T(nm),x,828)}
+    g.strokeStyle='#1d2a21';g.lineWidth=2;g.beginPath();g.moveTo(x-160,848);g.lineTo(x+160,848);g.stroke();
+    g.fillStyle='#1d2a21';g.font=FF(800,24);g.fillText(T(nm),x,878);g.font=FF(400,19);g.fillText(T(role),x,906)};
   sig(400,s1,'রশিদ আহমদ','সভাপতি, গিরি সম্প্রীতি');sig(1200,s2,sg.sn||'আলকামাহ শাকিলুর রশিদ','সাধারণ সম্পাদক, গিরি সম্প্রীতি');
-  if(drawQR(g,verifyUrl(c.no),cx-40,950,80)){g.fillStyle='#58503a';g.font=FF(400,16);g.fillText(T('কিউআর স্ক্যান করে যাচাই করুন'),cx,1052)}
+  if(drawQR(g,verifyUrl(c.no),cx-40,788,80)){g.fillStyle='#58503a';g.font=FF(400,15);g.fillText(T('কিউআর স্ক্যান করে যাচাই করুন'),cx,894)}
   return cv}
 async function drawIdCanvas(m){const W=1012,H=638,cv=document.createElement('canvas');cv.width=W;cv.height=H;const g=cv.getContext('2d');
   await loadFonts();const [logo,photo]=await Promise.all([loadImg(document.querySelector('.logo-big').src),loadImg(m.img)]);
@@ -1628,7 +1628,7 @@ async function exportArticlePdf(x,btn){
       const pageLines=allLines.slice(curLineIdx,curLineIdx+textMax);
       pageLines.forEach((l,i)=>g.fillText(l,80,textTopY+i*44));
       curLineIdx+=pageLines.length;
-      const footY=H-70;
+      const footY=H-85;
       g.strokeStyle='#dfd5b8';g.lineWidth=1;g.beginPath();g.moveTo(80,footY-32);g.lineTo(W-80,footY-32);g.stroke();
       g.textAlign='left';g.fillStyle='#586558';g.font=FF(400,18);
       g.fillText('গিরি সম্প্রীতি · বান্দরবান | sakilurrashid1-star.github.io/giri-sompriti',80,footY);
@@ -1648,7 +1648,7 @@ async function exportArticlePdf(x,btn){
 }
 async function saveCert(st,fmt){const id=st.type==='id',cv=id?await drawIdCanvas(st.m):await drawCertCanvas(st.c),base=id?'giri-sompriti-id-'+st.m.mid:'giri-sompriti-certificate-'+st.c.no;
   if(fmt==='png')dl(base+'.png','image/png',await new Promise(r=>cv.toBlob(r,'image/png')));
-  else{const b=await new Promise(r=>cv.toBlob(r,'image/jpeg',.93)),jpg=new Uint8Array(await b.arrayBuffer()),pw=id?243:842;dl(base+'.pdf','application/pdf',makePdf(jpg,cv.width,cv.height,pw,pw*cv.height/cv.width))}}
+  else{const b=await new Promise(r=>cv.toBlob(r,'image/jpeg',.95)),jpg=new Uint8Array(await b.arrayBuffer()),pw=id?243:841.89,ph=id?pw*cv.height/cv.width:595.28;dl(base+'.pdf','application/pdf',makePdf(jpg,cv.width,cv.height,pw,ph))}}
 
 (()=>{const d=$('dots');for(let i=0;i<14;i++){const s=document.createElement('span');s.className='dot';s.style.left=(i*7+3)+'%';s.style.animationDuration=(6+i%5*2)+'s';s.style.animationDelay=(i%7)+'s';d.appendChild(s)}})();
 const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
@@ -1709,7 +1709,7 @@ if(aiSaveKeyBtn){
   };
 }
 
-const welcomeMsgHtml=`<p>নমস্কার ও স্বাগতম! আমি <b>গিরি সহচর</b> — গিরি সম্প্রীতির এআই সহকারী। 🏔️</p><p>গিরি সম্প্রীতির ইতিহাস, লেখা জমা দেওয়ার নিয়ম, সনদপত্র যাচাই, সাহিত্য আসর বা যেকোনো বিষয়ে আমাকে প্রশ্ন করতে পারেন। আমি আপনাকে সহায়তায় প্রস্তুত!</p>`;
+const welcomeMsgHtml=`<p>স্বাগতম ও আন্তরিক শুভেচ্ছা! আমি <b>গিরি সহচর</b> — গিরি সম্প্রীতির এআই সহকারী। 🏔️</p><p>গিরি সম্প্রীতির ইতিহাস, লেখা জমা দেওয়ার নিয়ম, সনদপত্র যাচাই, সাহিত্য আসর বা যেকোনো বিষয়ে আমাকে প্রশ্ন করতে পারেন। আমি আপনাকে সহায়তায় প্রস্তুত!</p>`;
 
 if(aiClearBtn){
   aiClearBtn.onclick=()=>{
@@ -1796,8 +1796,8 @@ function getLocalAiResponse(q){
   if(text.includes('পরামর্শ')||text.includes('কীভাবে লিখব')||text.includes('ছন্দ')||text.includes('সাহিত্য চর্চা')||text.includes('tips')||text.includes('poem')){
     return "সাহিত্য সৃষ্টি মানুষের আত্মার গভীরতম প্রকাশ। ভালো লেখার জন্য কিছু পরামর্শ:\n\n১. **প্রচুর পাঠ:** যেকোনো ভালো লেখকের প্রথম গুণ হলো তিনি একনিষ্ঠ পাঠক। বিশ্বসাহিত্য ও বাংলা সাহিত্যের ক্ল্যাসিক লেখাগুলো পড়ুন।\n২. **অনুভূতিকে সত্য রাখা:** কৃত্রিমতার চেয়ে নিজের গভীর অনুভূতিকে সহজ ও প্রাঞ্জল ভাষায় তুলে ধরুন।\n৩. **শব্দচয়ন ও পরিমার্জন:** লেখা শেষ করার পর কয়েকবার উচ্চস্বরে পড়ুন, অতিরিক্ত শব্দ বাদ দিয়ে ভাব সুসংহত করুন।\n\nগিরি সম্প্রীতি সবসময় নতুন লেখকদের উৎসাহ ও প্রেরণা জোগাতে প্রতিশ্রুতিবদ্ধ। আপনার লেখা জমা দিতে পারেন আমাদের প্ল্যাটফর্মে!";
   }
-  if(text==='hi'||text==='hello'||text==='নমস্কার'||text==='সালাম'||text==='কেমন আছেন'||text==='কেমন আছ'||text.includes('কেমন')){
-    return "নমস্কার ও শুভেচ্ছা! আমি খুব ভালো আছি। গিরি সম্প্রীতি পরিবারে আপনাকে স্বাগতম! বাংলা সাহিত্য, আমাদের সংগঠন বা সাইট সংক্রান্ত যেকোনো তথ্যের জন্য আমাকে জিজ্ঞেস করতে পারেন। আজ আপনাকে কীভাবে সহায়তা করতে পারি?";
+  if(text==='hi'||text==='hello'||text==='নমস্কার'||text==='সালাম'||text==='স্বাগতম'||text==='কেমন আছেন'||text==='কেমন আছ'||text.includes('কেমন')){
+    return "স্বাগতম ও আন্তরিক শুভেচ্ছা! আমি খুব ভালো আছি। গিরি সম্প্রীতি পরিবারে আপনাকে স্বাগতম! বাংলা সাহিত্য, আমাদের সংগঠন বা সাইট সংক্রান্ত যেকোনো তথ্যের জন্য আমাকে জিজ্ঞেস করতে পারেন। আজ আপনাকে কীভাবে সহায়তা করতে পারি?";
   }
   return "ধন্যবাদ আপনার প্রশ্নের জন্য! গিরি সম্প্রীতি বান্দরবানের সাহিত্য, সাংস্কৃতিক ও সম্প্রীতির বন্ধনে গঠিত একটি ঐতিহ্যবাহী সংগঠন।\n\nআমি আপনাকে নিচের বিষয়গুলোতে সাহায্য করতে পারি:\n• **গিরি সম্প্রীতি সম্পর্কে জানুন:** লক্ষ্য, প্রতিষ্ঠা (২০২১) ও নেতৃত্ব\n• **লেখা জমা দেওয়া:** কবিতা, গল্প ও প্রবন্ধ প্রকাশের নিয়ম\n• **সনদ ও ভেরিফিকেশন:** শুভেচ্ছা সনদ, সেরা পাঠক ও অনলাইনে যাচাই\n• **সদস্য সুবিধা:** পাঠক আইডি কার্ড ও রিডিং ড্যাশবোর্ড\n• **যোগাযোগ:** ফোন, ঠিকানা ও ফেসবুক পরিবার\n\nআপনার সুনির্দিষ্ট প্রশ্নটি লিখুন অথবা প্রস্তাবিত বোতামগুলোতে চাপুন!";
 }
@@ -1811,7 +1811,7 @@ async function sendAiUserMessage(promptText){
 
   if(aiKey){
     try{
-      const sysPrompt="You are Giri Shohochor (গিরি সহচর), the wise, warm, and eloquent AI assistant of Giri Sompriti (গিরি সম্প্রীতি), a renowned literary, cultural, and social organization based in Bandarban, Chittagong, Bangladesh, founded in 2021. President: Rashid Ahmad; General Secretary: Alkamah Sakilur Rashid. Answer helpfully, respectfully, and beautifully in Bengali (or English if requested). Maintain high literary taste.";
+      const sysPrompt="You are Giri Shohochor (গিরি সহচর), the wise, warm, and eloquent AI assistant of Giri Sompriti (গিরি সম্প্রীতি), a renowned literary, cultural, and social organization based in Bandarban, Chittagong, Bangladesh, founded in 2021. President: Rashid Ahmad; General Secretary: Alkamah Sakilur Rashid. Answer helpfully, respectfully, and beautifully in Bengali (or English if requested). Maintain high literary taste. Always use inclusive, respectful, universal greetings suitable for people of all religions and backgrounds (e.g., 'স্বাগতম ও আন্তরিক শুভেচ্ছা!'). Never use religion-specific greetings.";
       const payload={contents:[{role:'user',parts:[{text:sysPrompt+"\n\nUser Question: "+q}]}]};
       const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(aiKey)}`;
       const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
